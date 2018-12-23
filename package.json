@@ -12,7 +12,8 @@
     "test": "jest",
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "build": "./bin/fiddly"
   },
   "files": [
     "LICENSE",
@@ -25,12 +26,10 @@
   "dependencies": {
     "clean-css": "^4.2.1",
     "create-html": "^4.1.0",
-    "gluegun": "next",
-    "markdown-it-footnote": "^3.0.1",
+    "gluegun": "2.0.3",
     "prismjs": "^1.15.0",
     "showdown": "^1.9.0",
     "showdown-footnotes": "^2.1.2",
-    "showdown-twitter": "^1.1.0",
     "to-css": "^1.2.1"
   },
   "devDependencies": {
