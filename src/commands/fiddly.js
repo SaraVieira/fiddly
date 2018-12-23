@@ -62,7 +62,7 @@ module.exports = {
     )
 
     // HTML
-    const name = options.file || 'Readme'
+    const name = options.file || 'Readme' || 'readme' || 'README'
     const markdown = filesystem.read(`${process.cwd()}/${name}.md`)
 
     const header =
