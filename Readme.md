@@ -66,6 +66,11 @@ The Github corner comes from the repository url in your `package.json`. If none 
 - [ ] Being able to add local URL's to logo in config
 - [ ] Add social things to head
 
+## Acknowledgements
+
+- Base styles from [medium.css](https://github.com/lucagez/medium.css)
+- Logo from [OpenMoji](http://www.openmoji.org/library.html?search=beautiful&emoji=2728)
+
 ## License
 
 MIT - see [LICENSE](https://github.com/SaraVieira/fiddly/blob/master/LICENSE)
