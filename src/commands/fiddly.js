@@ -33,13 +33,14 @@ module.exports = {
     const {
       parameters,
       template: { generate },
-      print: { info },
+      print: { info, success },
       filesystem
     } = toolbox
 
     const name = parameters.first || 'test'
     const options =
       filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {}
+    const dist = options.dist || 'public'
 
     // CSS
 
@@ -94,8 +95,9 @@ module.exports = {
       favicon: options.favicon || null
     })
 
-    await filesystem.write(`${process.cwd()}/public/index.html`, html)
+    await filesystem.write(`${process.cwd()}/${dist}/index.html`, html)
 
-    info(`Generated file at public/index.html`)
+    info(`Generated your static files at ${dist}/`)
+    success(`You can deploy the ${dist} folder to a static server 🎉`)
   }
 }

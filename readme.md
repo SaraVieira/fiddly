@@ -27,6 +27,7 @@ Options are placed in a `.fiddly.config.json` and it contains the following opti
 | noHeader    | false   | Show no header and just the markdown content                                          |
 | darkTheme   | false   | Dark theme ofc 🎉                                                                     |
 | favicon     | null    | Favicon url                                                                           |
+| dist        | public  | To what folder to render your HTML                                                    |
 | styles      | {}      | Styles to apply to the page. This will override eberything else. Use any css selector |
 
 Example of styles:

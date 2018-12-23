@@ -2,6 +2,7 @@ const { system, filesystem } = require('gluegun')
 const { resolve } = require('path')
 
 const src = resolve(__dirname, '..')
+const success = `Generated your static files at public/`
 
 const cli = async cmd =>
   system.run('node ' + resolve(src, 'bin', 'fiddly') + ` ${cmd}`)
@@ -16,15 +17,26 @@ test('outputs help', async () => {
   expect(output).toContain('0.0.1')
 })
 
-test('generates file', async () => {
-  const output = await cli('generate foo')
+test('generates html', async () => {
+  const output = await cli()
 
-  expect(output).toContain('Generated file at models/foo-model.js')
-  const foomodel = filesystem.read('models/foo-model.js')
+  expect(output).toContain(success)
+  const index = filesystem.read('public/index.html')
 
-  expect(foomodel).toContain(`module.exports = {`)
-  expect(foomodel).toContain(`name: 'foo'`)
+  expect(index).toContain(`<!doctype html>`)
 
   // cleanup artifact
-  filesystem.remove('models')
+  filesystem.remove('public')
+})
+
+test('generates css', async () => {
+  const output = await cli()
+
+  expect(output).toContain(success)
+  const css = filesystem.read('public/style.css')
+
+  expect(css).toContain(`body{`)
+
+  // cleanup artifact
+  filesystem.remove('public')
 })
