@@ -2,6 +2,5 @@
   "name": "My awesome project",
   "logo": "http://www.openmoji.org/data/color/svg/1F942.svg",
   "description": "My awesome OSS thingy",
-  "favicon": "https://codesandbox.io/favicon.ico",
   "darkTheme": true
 }

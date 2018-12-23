@@ -21,6 +21,7 @@ Options are placed in a `.fiddly.config.json` and it contains the following opti
 
 | Option      | Default | Description                                                                           |
 | ----------- | ------- | ------------------------------------------------------------------------------------- |
+| file        | Readme  | Your Readme.md name                                                                   |
 | name        | null    | The project name that is in the title and the header                                  |
 | logo        | null    | The project logo that is in the header                                                |
 | description | null    | The project description for metaTags                                                  |

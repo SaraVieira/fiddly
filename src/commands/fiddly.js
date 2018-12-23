@@ -36,8 +36,6 @@ module.exports = {
       print: { info, success },
       filesystem
     } = toolbox
-
-    const name = parameters.first || 'test'
     const options =
       filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {}
     const dist = options.dist || 'public'
@@ -65,6 +63,7 @@ module.exports = {
     )
 
     // HTML
+    const name = options.file || 'Readme'
     const markdown = filesystem.read(`${process.cwd()}/${name}.md`)
 
     const header =
@@ -82,7 +81,10 @@ module.exports = {
         'https://unpkg.com/prismjs@1.15.0/themes/prism.css'
       ],
       scriptAsync: true,
-      script: ['https://unpkg.com/prismjs@1.15.0/prism.js'],
+      script: [
+        'https://unpkg.com/prismjs@1.15.0/prism.js',
+        'https://unpkg.com/prismjs@1.15.0/components/prism-json.min.js'
+      ],
       lang: 'en',
       head: `<meta charset="utf-8" /><meta http-equiv="x-ua-compatible" content="ie=edge" /><meta name="description" content="${
         options.description
