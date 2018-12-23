@@ -76,8 +76,14 @@ module.exports = {
 
     try {
       await filesystem.write(`${process.cwd()}/${dist}/index.html`, html)
-      info(`Generated your static files at ${dist}/`)
-      success(`You can deploy the ${dist} folder to a static server 🎉`)
+      info(`
+
+                Generated your static files at ${dist}/
+      `)
+      success(`
+      🎉   You can deploy the ${dist} folder to a static server    🎉
+
+      `)
     } catch (e) {
       error('Oh no, there has beenm an error making your files')
     }
