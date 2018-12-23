@@ -84,7 +84,8 @@ module.exports = {
       scriptAsync: true,
       script: [
         'https://unpkg.com/prismjs@1.15.0/prism.js',
-        'https://unpkg.com/prismjs@1.15.0/components/prism-json.min.js'
+        'https://unpkg.com/prismjs@1.15.0/components/prism-json.min.js',
+        'https://unpkg.com/prismjs@1.15.0/components/prism-bash.min.js'
       ],
       lang: 'en',
       head: `<meta charset="utf-8" /><meta http-equiv="x-ua-compatible" content="ie=edge" /><meta name="description" content="${

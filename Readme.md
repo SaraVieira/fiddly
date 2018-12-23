@@ -2,11 +2,11 @@
 
 Create beautiful and simple HTML pages from your Readme.md files
 
-```sh
+```bash
 yarn add fiddly --dev
 ```
 
-```sh
+```bash
 npm install fiddly --save-dev
 ```
 
