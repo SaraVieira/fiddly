@@ -30,7 +30,8 @@
     "prismjs": "^1.15.0",
     "showdown": "^1.9.0",
     "showdown-footnotes": "^2.1.2",
-    "showdown-twitter": "^1.1.0"
+    "showdown-twitter": "^1.1.0",
+    "to-css": "^1.2.1"
   },
   "devDependencies": {
     "jest": "^23.6.0",

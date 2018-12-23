@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Lora|Playfair+Display:700i,900');
-html, body, .body {
+html, body, .body, #fiddly {
   margin: 0;
   width: 100%;
   padding: 0;
