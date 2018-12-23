@@ -2,6 +2,14 @@
 
 Create beautiful and simple HTML pages from your Readme.md files
 
+```sh
+yarn add fiddly --dev
+```
+
+```sh
+npm install fiddly --save-dev
+```
+
 ## Usage
 
 ```json
