@@ -1,4 +1,4 @@
-# Fiddly CLI
+# Fiddly
 
 Create beautiful and simple HTML pages from your Readme.md files
 
