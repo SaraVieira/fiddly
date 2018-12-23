@@ -67,10 +67,12 @@ module.exports = {
     const markdown = filesystem.read(`${process.cwd()}/${name}.md`)
 
     const header =
-      options.name && !options.noHeader
-        ? `<header><h1>${options.name}</h1><img class="logo" src="${
+      options && !options.noHeader
+        ? `<header>${options.name ? `<h1>${options.name}</h1>` : ''}${
             options.logo
-          }" /></header>`
+              ? `<img class="logo" src="${options.logo}" alt="logo" />`
+              : ''
+          }</header>`
         : ''
 
     var html = createHTML({
