@@ -1,17 +1,17 @@
 {
   "name": "fiddly",
+  "description": "Create beautiful and simple HTML pages from your Readme.md files",
   "version": "0.0.1",
-  "description": "fiddly CLI",
-  "private": true,
   "bin": {
     "fiddly": "bin/fiddly"
   },
   "scripts": {
-    "format": "prettier --write **/*.{js,json} && standard --fix",
-    "lint": "standard",
+    "format": "prettier --write \"src/**/*.js\"",
+    "lint": "eslint . --cache --fix",
+    "pretest": "npm run lint",
     "test": "jest",
+    "posttest": "npm run format",
     "watch": "jest --watch",
-    "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage",
     "build": "./bin/fiddly"
   },
@@ -33,12 +33,22 @@
     "to-css": "^1.2.1"
   },
   "devDependencies": {
+    "eslint": "^5.11.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "jest": "^23.6.0",
     "prettier": "^1.12.1",
     "standard": "^12.0.1"
   },
   "jest": {
     "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SaraVieira/fiddly"
   },
   "standard": {
     "env": [

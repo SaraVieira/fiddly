@@ -80,6 +80,10 @@ header {
   margin: 20px 0;
 }
 
+header h1 {
+  text-transform: capitalize;
+}
+
 h1 {
   font-family: "Playfair Display", serif;
   font-size: 48px;

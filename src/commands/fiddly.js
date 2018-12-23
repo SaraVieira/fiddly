@@ -2,6 +2,10 @@ const showdown = require('showdown')
 var toCss = require('to-css')
 const CleanCSS = require('clean-css')
 const createHTML = require('create-html')
+const corner = require('../utils/githubCorner')
+const capitalize = require('../utils/capitalize')
+const fiddlyImports = require('../utils/fiddlyImports.js')
+const header = require('../utils/header.js')
 
 showdown.extension('header-anchors', function() {
   var ancTpl =
@@ -30,25 +34,16 @@ module.exports = {
   name: 'fiddly',
   run: async toolbox => {
     const {
-      parameters,
-      template: { generate },
       print: { info, success },
       filesystem
     } = toolbox
     const options =
       filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {}
     const dist = options.dist || 'public'
+    const packageJSON =
+      filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
     // CSS
-
-    const styleString = style =>
-      Object.entries(style).reduce((styleString, [propName, propValue]) => {
-        propName = propName.replace(
-          /([A-Z])/g,
-          matches => `-${matches[0].toLowerCase()}`
-        )
-        return `${styleString}${propName}:${propValue};`
-      }, '')
     const css = filesystem.read(`${__dirname}/css/css.css`).concat(
       toCss(options.styles, {
         selector: s => `#fiddly ${s}`,
@@ -62,38 +57,25 @@ module.exports = {
     )
 
     // HTML
-    const name = options.file || 'Readme' || 'readme' || 'README'
-    const markdown = filesystem.read(`${process.cwd()}/${name}.md`)
-
-    const header =
-      options && !options.noHeader
-        ? `<header>${options.name ? `<h1>${options.name}</h1>` : ''}${
-            options.logo
-              ? `<img class="logo" src="${options.logo}" alt="logo" />`
-              : ''
-          }</header>`
-        : ''
+    const file = options.file || 'Readme' || 'readme' || 'README'
+    const markdown = filesystem.read(`${process.cwd()}/${file}.md`)
+    const description = options.description || packageJSON.description
+    const name = options.name || packageJSON.name
 
     var html = createHTML({
-      title: options.name,
-      css: [
-        'https://rawcdn.githack.com/yegor256/tacit/42137b0c4369dbc6616aef1b286cda5aff467314/tacit-css-1.3.5.min.css',
-        'style.css',
-        'https://unpkg.com/prismjs@1.15.0/themes/prism.css'
-      ],
+      title: capitalize(name),
+      css: fiddlyImports.css,
       scriptAsync: true,
-      script: [
-        'https://unpkg.com/prismjs@1.15.0/prism.js',
-        'https://unpkg.com/prismjs@1.15.0/components/prism-json.min.js',
-        'https://unpkg.com/prismjs@1.15.0/components/prism-bash.min.js'
-      ],
+      script: fiddlyImports.js,
       lang: 'en',
-      head: `<meta charset="utf-8" /><meta http-equiv="x-ua-compatible" content="ie=edge" /><meta name="description" content="${
-        options.description
-      }" /><meta name="viewport" content="width=device-width, initial-scale=1" />`,
+      head: `<meta charset="utf-8" /><meta http-equiv="x-ua-compatible" content="ie=edge" /><meta name="description" content="${description}" /><meta name="viewport" content="width=device-width, initial-scale=1" />`,
       body: `<div id="fiddly"><div class="body ${
         options.darkTheme ? 'dark' : ''
-      }"><div class="container">${header}${converter.makeHtml(
+      }"><div class="container">${
+        packageJSON.repository
+          ? corner(packageJSON.repository.url, options.darkTheme)
+          : ''
+      }${header(options, name)}${converter.makeHtml(
         markdown
       )}</div></div></div>`,
       favicon: options.favicon || null
