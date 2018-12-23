@@ -15,6 +15,8 @@ Create beautiful and simple HTML pages from your Readme.md files
 
 Deploy automatically to netlify 🎉
 
+[This Readme on Netlify](https://fiddly.netlify.com/)
+
 ## Options
 
 Options are placed in a `.fiddly.config.json` and it contains the following options:
