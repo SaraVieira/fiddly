@@ -144,23 +144,31 @@ mark, .highlighted {
   background: #7DFFB3;
 }
 
-.first-letter {
-  overflow-wrap: break-word;
-  font-family: "Playfair Display", serif;
-  font-size: 60px;
-  line-height: 60px;
-  display: block;
-  position: relative;
-  float: left;
-  margin: 0px 7px 0 -5px;
-}
-
-.subtitle {
-  font-family: "Lato", sans-serif;
-  color: rgba(0, 0, 0, 0.54);
-  margin: 0 0 24px 0;
-}
-
 ::selection {
   background-color: lavender
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0)
+  }
+  20%, 60% {
+    transform: rotate(-25deg)
+  }
+  40%, 80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
 }
