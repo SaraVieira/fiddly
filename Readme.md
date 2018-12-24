@@ -84,9 +84,9 @@ The Github corner comes from the repository url in your `package.json`. If none 
 
 ## Todo
 
-- [ ] Work with loaded images by the markdown files when those are local
+- [x] Work with loaded images by the markdown files when those are local
 - [ ] Being able to add local URL's to logo in config
-- [ ] Add social things to head
+- [x] Add social things to head
 
 ## Acknowledgements
 

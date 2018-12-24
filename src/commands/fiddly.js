@@ -38,7 +38,7 @@ module.exports = {
   name: 'fiddly',
   run: async toolbox => {
     const {
-      print: { info, success, error },
+      print: { info, success, error, warning },
       filesystem
     } = toolbox
 
@@ -76,6 +76,22 @@ module.exports = {
       ? corner(packageJSON.repository.url, options.darkTheme)
       : ''
     const dark = options.darkTheme ? 'dark' : ''
+
+    const images = markdown
+      .match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim)
+      .map(image => image.split('./')[1].split(')')[0])
+
+    try {
+      images.map(i =>
+        filesystem.copy(
+          `${process.cwd()}/${i}`,
+          `${process.cwd()}/${dist}/${i}`,
+          { overwrite: true }
+        )
+      )
+    } catch (e) {
+      warning('Some images referenced were not found.')
+    }
 
     var html = createHTML({
       title: capitalize(name),
