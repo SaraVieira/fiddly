@@ -101,14 +101,12 @@ header h1 {
 /* HEADINGS */
 
 h1 {
-  font-family: "Playfair Display", serif;
   font-size: 48px;
   text-align: left;
   margin-bottom: 8px;
 }
 
 h2 {
-  font-family: "Playfair Display", serif;
   font-size: 26px;
   font-weight: 700;
   padding: 0;
@@ -129,6 +127,7 @@ h1, h2, h3 {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
+  font-family: "Playfair Display", serif;
 }
 
 .anchor {
