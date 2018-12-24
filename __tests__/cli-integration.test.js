@@ -40,3 +40,15 @@ test('generates css', async () => {
   // cleanup artifact
   filesystem.remove('public')
 })
+
+test('generates dark', async () => {
+  const output = await cli('--config=one.json')
+
+  expect(output).toContain(success)
+  const css = filesystem.read('public/style.css')
+
+  expect(css).toContain(`body{`)
+
+  // cleanup artifact
+  filesystem.remove('public')
+})

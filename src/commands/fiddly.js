@@ -22,6 +22,18 @@ const converter = new showdown.Converter({
 })
 converter.setFlavor('github')
 
+const defaultOptions = {
+  dist: 'public',
+  darkTheme: false,
+  noHeader: false,
+  file: 'Readme' || 'readme' || 'README',
+  name: null,
+  description: null,
+  styles: {},
+  logo: null,
+  favicon: null
+}
+
 module.exports = {
   name: 'fiddly',
   run: async toolbox => {
@@ -31,8 +43,9 @@ module.exports = {
     } = toolbox
 
     const options =
-      filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {}
-    const dist = options.dist || 'public'
+      filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
+      defaultOptions
+    const dist = options.dist
     const packageJSON =
       filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
@@ -51,7 +64,7 @@ module.exports = {
     )
 
     // HTML
-    const file = options.file || 'Readme' || 'readme' || 'README'
+    const file = options.file
     const markdown = filesystem.read(`${process.cwd()}/${file}.md`)
     const description = options.description || packageJSON.description
     const name = options.name || packageJSON.name

@@ -13,7 +13,8 @@
     "posttest": "npm run format",
     "watch": "jest --watch",
     "coverage": "jest --coverage",
-    "build": "./bin/fiddly.js"
+    "build": "./bin/fiddly.js",
+    "prepublish": "npm run test"
   },
   "files": [
     "LICENSE",
