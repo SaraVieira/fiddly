@@ -23,7 +23,7 @@ th {
 td, th {
   border-bottom: 1.08px solid #595959;
   overflow: auto;
-  padding: 14.85px 18px;
+  padding: 14px 10px;
   text-align: left;
   vertical-align: top
 }
@@ -34,11 +34,11 @@ thead th {
 }
 
 table {
-  display: table;
+  display: block;
   overflow-x: auto
 }
 
-input, textarea, select, button, option, html, body {
+input, textarea, select, button, option {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-stretch: normal;

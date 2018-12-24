@@ -1,5 +1,5 @@
 exports.css = [
-  'https://fonts.googleapis.com/css?family=Maitree',
+  'https://fonts.googleapis.com/css?family=Lato',
   'https://fonts.googleapis.com/css?family=Playfair+Display:700i,900',
   'style.css'
 ]
