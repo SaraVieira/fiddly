@@ -3,7 +3,7 @@ node_modules
 npm-debug.log
 coverage
 .nyc_output
-yarn.lock
+yarn-error.lock
 public
 package.lock
 .eslintcache

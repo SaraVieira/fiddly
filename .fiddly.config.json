@@ -1,4 +1,5 @@
 {
-  "logo": "https://rawcdn.githack.com/SaraVieira/fiddly/6738c1458270f72effd8126a3090a6e5dbe9a0a6/logo.png",
+  "logo": "./logo.png",
+  "favicon": "./logo.ico",
   "darkTheme": true
 }

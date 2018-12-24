@@ -30,7 +30,7 @@ const defaultOptions = {
   name: null,
   description: null,
   styles: {},
-  logo: null,
+  logo: '',
   favicon: ''
 }
 
@@ -97,6 +97,14 @@ module.exports = {
       filesystem.copy(
         `${process.cwd()}/${options.favicon}`,
         `${process.cwd()}/${dist}/${options.favicon}`,
+        { overwrite: true }
+      )
+    }
+
+    if (!options.logo.includes('http') && options.logo !== '') {
+      filesystem.copy(
+        `${process.cwd()}/${options.logo}`,
+        `${process.cwd()}/${dist}/${options.logo}`,
         { overwrite: true }
       )
     }
