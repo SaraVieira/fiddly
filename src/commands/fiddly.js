@@ -53,7 +53,11 @@ module.exports = {
     // CSS
     const css = filesystem
       .read(`${__dirname}/css/normalize.css`)
-      .concat(filesystem.read(`${__dirname}/css/css.css`))
+      .concat(filesystem.read(`${__dirname}/css/tacit.css`))
+      .concat(filesystem.read(`${__dirname}/css/prism.css`))
+      .concat(filesystem.read(`${__dirname}/css/gh-corner.css`))
+      .concat(filesystem.read(`${__dirname}/css/style.css`))
+      .concat(filesystem.read(`${__dirname}/css/dark.css`))
       .concat(
         toCss(options.styles, {
           selector: s => `#fiddly ${s}`,

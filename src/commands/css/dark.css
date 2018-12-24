@@ -1,0 +1,32 @@
+/* Dark Mode */
+
+.body.dark {
+  color: #f5f5f5;
+  background: #1a1919;
+}
+
+.body.dark code {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, .84);
+}
+
+.body.dark pre code {
+  background: transparent;
+  color: rgba(0, 0, 0, .84);
+}
+
+.body.dark pre:not([class]) {
+  background: #f5f2f0;
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+}
+
+.body.dark .anchor svg path {
+  fill: white;
+}
+
+.body.dark h1, .body.dark h2, .body.dark h3, .body.dark h5, .body.dark h4, .body.dark h6, .body.dark p, .body.dark a {
+  color: #f5f5f5;
+  background: #1a1919;
+}
