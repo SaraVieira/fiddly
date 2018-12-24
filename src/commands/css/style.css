@@ -24,6 +24,10 @@ body {
   margin: auto;
 }
 
+iframe {
+  margin: 20px 0;
+}
+
 /* CODE */
 
 code {
