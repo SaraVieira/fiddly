@@ -82,12 +82,6 @@ You can see the issue regarding showdown [here](https://github.com/showdownjs/sh
 
 The Github corner comes from the repository url in your `package.json`. If none is present it will not be shown.
 
-## Todo
-
-- [x] Work with loaded images by the markdown files when those are local
-- [x] Being able to add local URL's to logo in config
-- [x] Add social things to head
-
 ## Acknowledgements
 
 - Base styles from [medium.css](https://github.com/lucagez/medium.css)
