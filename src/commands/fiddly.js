@@ -31,7 +31,7 @@ const defaultOptions = {
   description: null,
   styles: {},
   logo: null,
-  favicon: null
+  favicon: ''
 }
 
 module.exports = {
@@ -91,6 +91,14 @@ module.exports = {
       )
     } catch (e) {
       warning('Some images referenced were not found.')
+    }
+
+    if (!options.favicon.includes('http') && options.favicon !== '') {
+      filesystem.copy(
+        `${process.cwd()}/${options.favicon}`,
+        `${process.cwd()}/${dist}/${options.favicon}`,
+        { overwrite: true }
+      )
     }
 
     var html = createHTML({
