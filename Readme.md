@@ -25,6 +25,16 @@ Deploy automatically to netlify 🎉
 
 [This Readme on Netlify](https://fiddly.netlify.com/)
 
+## Usage with npx
+
+If you just want a quick fancy HTML page from the Readme but don't care about running this in continuous deployment you can also use `npx` to run it as a one time thing.
+
+```bash
+  npx fiddly
+```
+
+By running this in the root folder you will also get a public folder
+
 ## Options
 
 Options are placed in a `.fiddly.config.json` and it contains the following options:
@@ -33,15 +43,15 @@ Options are placed in a `.fiddly.config.json` and it contains the following opti
 | ----------- | --------------------------- | ------------------------------------------------------------------------------------- |
 | file        | Readme                      | Your Readme.md name                                                                   |
 | name        | name in package.json        | The project name that is in the title and the header                                  |
-| logo        | null                        | The project logo that is in the header                                                |
+| logo        | ''                          | The project logo that is in the header                                                |
 | description | description in package.json | The project description for metaTags                                                  |
 | noHeader    | false                       | Show no header and just the markdown content                                          |
 | darkTheme   | false                       | Dark theme ofc 🎉                                                                     |
-| favicon     | null                        | Favicon url                                                                           |
+| favicon     | ''                          | Favicon url or local path                                                             |
 | dist        | public                      | To what folder to render your HTML                                                    |
 | styles      | {}                          | Styles to apply to the page. This will override everything else. Use any css selector |
 
-Example of styles:
+### Example of styles
 
 ```json
 {
@@ -54,7 +64,7 @@ Example of styles:
 }
 ```
 
-This will override all the H1 styles
+This will override all the H1 styles since what I do is use all of this with an id before hand so that it overrides everything.
 
 ## HTML in Markdown
 
@@ -77,6 +87,10 @@ In order for fiddly to render the inner contents as markdown you will need to ad
 This is not needed for anything without children like images or `<br>` tags.
 
 You can see the issue regarding showdown [here](https://github.com/showdownjs/showdown/issues/178)
+
+## Images
+
+Any images linked in your markdown that are local will be copied to your public folder. If some image is not found it will be ignored.
 
 ## Github Corner
 
