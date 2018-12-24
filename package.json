@@ -13,15 +13,29 @@
     "posttest": "npm run format",
     "watch": "jest --watch",
     "coverage": "jest --coverage",
-    "build": "./bin/fiddly"
+    "build": "./bin/fiddly.js"
   },
   "files": [
     "LICENSE",
-    "readme.md",
-    "docs",
+    "Readme.md",
     "bin",
     "src"
   ],
+  "keywords": [
+    "generation",
+    "markdown",
+    "static",
+    "sites",
+    "fiddly"
+  ],
+  "author": {
+    "name": "Sara Vieira",
+    "email": "hey@iamsaravieira.com",
+    "url": "https://iamsaravieira.com/"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "license": "MIT",
   "dependencies": {
     "clean-css": "^4.2.1",
@@ -40,23 +54,18 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^23.6.0",
-    "prettier": "^1.12.1",
-    "standard": "^12.0.1"
+    "prettier": "^1.15.3"
   },
   "jest": {
     "testEnvironment": "node"
   },
+  "homepage": "https://github.com/SaraVieira/fiddly",
+  "bugs": {
+    "url": "https://github.com/SaraVieira/fiddly/issues",
+    "email": "hey@iamsaravieira.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/SaraVieira/fiddly"
-  },
-  "standard": {
-    "env": [
-      "jest"
-    ]
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
   }
 }
