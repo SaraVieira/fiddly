@@ -90,7 +90,7 @@ In order for fiddly to render the inner contents as markdown you will need to ad
 
 ```markdown
 <div align="center" data-markdown="1">
-  [![Hello](./image)](https://link.url)
+  [![Hello](./image)](https://link.url) [![Build Status](https://travis-ci.org/SaraVieira/fiddly.svg)](https://travis-ci.org/SaraVieira/fiddly)
 </div>
 ```
 
