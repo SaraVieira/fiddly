@@ -112,7 +112,6 @@ module.exports = {
     var html = createHTML({
       title: capitalize(name),
       css: fiddlyImports.css,
-      scriptAsync: true,
       script: fiddlyImports.js,
       lang: 'en',
       head: head(description, name, options, packageJSON.homepage),
