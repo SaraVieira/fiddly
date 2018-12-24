@@ -1,22 +1,169 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Lora|Playfair+Display:700i,900');
+/* GENERAL  */
+
 html, body, .body, #fiddly {
-  margin: 0;
   width: 100%;
-  padding: 0;
   min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin-top: -20px;
-}
-
-.body.dark {
-  color: #f5f5f5;
-  background: #1a1919;
+  font-family: "Maitree", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .body {
   padding-bottom: 60px;
+}
+
+.container {
+  width: 1100px;
+  max-width: 80%;
+  margin: auto;
+}
+
+/* CODE */
+
+code {
+  font-size: 18px;
+  background: rgba(0, 0, 0, .05);
+  border-radius: 2px;
+  padding: 3px 5px;
+  color: rgba(0, 0, 0, .84);
+  line-height: 1.5;
+  display: initial;
+}
+
+/* TEXT */
+
+p, i, a, li {
+  margin-top: 21px;
+  font-family: "Maitree", sans-serif;
+  font-size: 21px;
+  letter-spacing: -0.03px;
+  line-height: 1.58;
+}
+
+li {
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: underline;
+}
+
+blockquote {
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  font-style: italic;
+  letter-spacing: -0.36px;
+  line-height: 44.4px;
+  overflow-wrap: break-word;
+  margin: 55px 0 33px 0;
+  color: rgba(0, 0, 0, 0.68);
+  padding: 0 0 0 50px;
+}
+
+mark, .highlighted {
+  background: #7DFFB3;
+}
+
+::selection {
+  background-color: lavender
+}
+
+/* HEADER */
+
+.logo {
+  max-width: 300px;
+  margin: 20px 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 20px 0;
+}
+
+header h1 {
+  text-transform: capitalize;
+}
+
+/* HEADINGS */
+
+h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 0;
+  text-align: left;
+  line-height: 34.5px;
+  letter-spacing: -0.45px;
+}
+
+h1, h2, p, i, a {
+  color: rgba(0, 0, 0, 0.84);
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  display: flex;
+  align-items: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+.anchor {
+  padding-right: 10px;
+  margin: 0;
+}
+
+/* GITHUB CORNER */
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0)
+  }
+  20%, 60% {
+    transform: rotate(-25deg)
+  }
+  40%, 80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
+}
+
+/* Dark Mode */
+
+.body.dark {
+  color: #f5f5f5;
+  background: #1a1919;
 }
 
 .body.dark code {
@@ -43,133 +190,4 @@ body {
 .body.dark h1, .body.dark h2, .body.dark h3, .body.dark h5, .body.dark h4, .body.dark h6, .body.dark p, .body.dark a {
   color: #f5f5f5;
   background: #1a1919;
-}
-
-.container {
-  width: 1100px;
-  max-width: 80%;
-  margin: auto;
-}
-
-h1, h2, p, i, a, .first-letter, .authorName a {
-  color: rgba(0, 0, 0, 0.84);
-  text-rendering: optimizeLegibility;
-}
-
-h1, h2, h3 {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-}
-
-.anchor {
-  padding-right: 10px;
-  margin: 0;
-}
-
-.logo {
-  max-width: 300px;
-  margin: 20px 0;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0;
-  margin: 20px 0;
-}
-
-header h1 {
-  text-transform: capitalize;
-}
-
-h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 48px;
-  text-align: left;
-  margin-bottom: 8px;
-}
-
-h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 26px;
-  font-weight: 700;
-  padding: 0;
-  text-align: left;
-  line-height: 34.5px;
-  letter-spacing: -0.45px;
-}
-
-p, i, a, li {
-  margin-top: 21px;
-  font-family: "Lora";
-  font-size: 21px;
-  letter-spacing: -0.03px;
-  line-height: 1.58;
-}
-
-li {
-  margin-top: 10px;
-}
-
-a {
-  text-decoration: underline;
-}
-
-blockquote {
-  font-family: "Playfair Display", serif;
-  font-size: 30px;
-  font-style: italic;
-  letter-spacing: -0.36px;
-  line-height: 44.4px;
-  overflow-wrap: break-word;
-  margin: 55px 0 33px 0;
-  /* text-align: center; */
-  color: rgba(0, 0, 0, 0.68);
-  padding: 0 0 0 50px;
-}
-
-code {
-  font-size: 18px;
-  background: rgba(0, 0, 0, .05);
-  border-radius: 2px;
-  padding: 3px 5px;
-  color: rgba(0, 0, 0, .84);
-  line-height: 1.5;
-  display: initial;
-}
-
-mark, .highlighted {
-  background: #7DFFB3;
-}
-
-::selection {
-  background-color: lavender
-}
-
-.github-corner:hover .octo-arm {
-  animation: octocat-wave 560ms ease-in-out
-}
-
-@keyframes octocat-wave {
-  0%, 100% {
-    transform: rotate(0)
-  }
-  20%, 60% {
-    transform: rotate(-25deg)
-  }
-  40%, 80% {
-    transform: rotate(10deg)
-  }
-}
-
-@media (max-width:500px) {
-  .github-corner:hover .octo-arm {
-    animation: none
-  }
-  .github-corner .octo-arm {
-    animation: octocat-wave 560ms ease-in-out
-  }
 }
