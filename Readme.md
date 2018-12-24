@@ -56,6 +56,28 @@ Example of styles:
 
 This will override all the H1 styles
 
+## HTML in Markdown
+
+If you have any HTML in your markdown that has children that are markdown, for example a div like this:
+
+```markdown
+<div align="center">
+  [![Hello](./image)](https://link.url)
+</div>
+```
+
+In order for fiddly to render the inner contents as markdown you will need to add `data-markdown="1"` to the surroun ding element like so:
+
+```markdown
+<div align="center" data-markdown="1">
+  [![Hello](./image)](https://link.url)
+</div>
+```
+
+This is not needed for anything without children like images or `<br>` tags.
+
+You can see the issue regarding showdown [here](https://github.com/showdownjs/showdown/issues/178)
+
 ## Github Corner
 
 The Github corner comes from the repository url in your `package.json`. If none is present it will not be shown.

@@ -42,9 +42,10 @@ module.exports = {
       filesystem
     } = toolbox
 
-    const options =
-      filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
-      defaultOptions
+    const options = {
+      ...defaultOptions,
+      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {})
+    }
     const dist = options.dist
     const packageJSON =
       filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
@@ -79,12 +80,12 @@ module.exports = {
       scriptAsync: true,
       script: fiddlyImports.js,
       lang: 'en',
-      head: head(description),
+      head: head(description, name, options, packageJSON.homepage),
       body: `<div id="fiddly"><div class="body ${dark}"><div class="container">${githubCorner}${header(
         options,
         name
       )}${converter.makeHtml(markdown)}</div></div></div>`,
-      favicon: options.favicon || null
+      favicon: options.favicon
     })
 
     try {
