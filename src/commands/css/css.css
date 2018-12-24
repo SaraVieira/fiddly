@@ -59,6 +59,7 @@ h1, h2, p, i, a, .first-letter, .authorName a {
 h1, h2, h3 {
   display: flex;
   align-items: center;
+  font-weight: bold;
 }
 
 .anchor {

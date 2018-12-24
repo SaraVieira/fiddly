@@ -1,5 +1,5 @@
 const showdown = require('showdown')
-var toCss = require('to-css')
+const toCss = require('to-css')
 const CleanCSS = require('clean-css')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
@@ -51,13 +51,16 @@ module.exports = {
       filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
     // CSS
-    const css = filesystem.read(`${__dirname}/css/css.css`).concat(
-      toCss(options.styles, {
-        selector: s => `#fiddly ${s}`,
-        property: p =>
-          p.replace(/([A-Z])/g, matches => `-${matches[0].toLowerCase()}`)
-      })
-    )
+    const css = filesystem
+      .read(`${__dirname}/css/normalize.css`)
+      .concat(filesystem.read(`${__dirname}/css/css.css`))
+      .concat(
+        toCss(options.styles, {
+          selector: s => `#fiddly ${s}`,
+          property: p =>
+            p.replace(/([A-Z])/g, matches => `-${matches[0].toLowerCase()}`)
+        })
+      )
 
     await filesystem.write(
       `${process.cwd()}/public/style.css`,
