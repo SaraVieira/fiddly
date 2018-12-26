@@ -8,7 +8,7 @@ Create beautiful and simple HTML pages from your Readme.md files
 - ✨Creates Static files (only JS is prism)
 - 🏳️‍🌈 Pretty Pages
 - 🦄 Customizable
-- 🇳🇱 [CodeSandbox](https://codesandbox.io) and ifame Support
+- 🇳🇱 [CodeSandbox](https://codesandbox.io) and iframe Support
 
 ```bash
 yarn add fiddly --dev
