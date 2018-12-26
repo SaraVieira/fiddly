@@ -67,7 +67,7 @@ module.exports = {
       )
 
     await filesystem.write(
-      `${process.cwd()}/public/style.css`,
+      `${process.cwd()}/${dist}/style.css`,
       new CleanCSS().minify(css).styles
     )
 
