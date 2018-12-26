@@ -1,0 +1,24 @@
+{
+  "projectName": "fiddly",
+  "projectOwner": "SaraVieira",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "Readme.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "SaraVieira",
+      "name": "Sara Vieira",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1051509?v=4",
+      "profile": "http://iamsaravieira.com",
+      "contributions": [
+        "code",
+        "design",
+        "ideas"
+      ]
+    }
+  ]
+}

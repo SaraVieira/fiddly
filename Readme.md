@@ -123,6 +123,16 @@ The Github corner comes from the repository url in your `package.json`. If none 
 - Base styles from [medium.css](https://github.com/lucagez/medium.css)
 - Logo from [OpenMoji](http://www.openmoji.org/library.html?search=beautiful&emoji=2728)
 
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/1051509?v=4" width="100px;"/><br /><sub><b>Sara Vieira</b></sub>](http://iamsaravieira.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=SaraVieira "Code") [🎨](#design-SaraVieira "Design") [🤔](#ideas-SaraVieira "Ideas, Planning, & Feedback") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- ALL-CONTRIBUTORS-LIST: START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## License
 
 MIT - see [LICENSE](https://github.com/SaraVieira/fiddly/blob/master/LICENSE)
