@@ -81,8 +81,7 @@ module.exports = {
       : ''
     const dark = options.darkTheme ? 'dark' : ''
 
-    const images = (markdown
-      .match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim) || [])
+    const images = (markdown.match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim) || [])
       .filter(i => !i.includes('https'))
       .map(image => (image.split('./')[1] || '').split(')')[0])
 

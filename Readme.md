@@ -106,6 +106,16 @@ Any images linked in your markdown that are local will be copied to your public 
 
 The Github corner comes from the repository url in your `package.json`. If none is present it will not be shown.
 
+## TODO
+
+- [ ] Deploy using magic to GH Pages too
+- [ ] Support Multiple pages (if this exists in the config create several HTML files with a header and links to each page)
+- [ ] Allow users to input a css file to override the styles instead of all the styles in a json
+- [ ] Use sass so that the user can use sass too
+- [ ] Make All Contributors look nice
+- [ ] Allow option to change prism theme
+- [ ] Optimize images on copy
+
 ## Acknowledgements
 
 - Base styles from [medium.css](https://github.com/lucagez/medium.css)
