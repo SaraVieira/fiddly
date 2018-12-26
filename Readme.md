@@ -115,6 +115,8 @@ The Github corner comes from the repository url in your `package.json`. If none 
 - [ ] Make All Contributors look nice
 - [ ] Allow option to change prism theme
 - [ ] Optimize images on copy
+- [ ] Have tests with cypress to make sure page looks okay
+- [ ] Have more tests and find way to mock the input file in it
 
 ## Acknowledgements
 
