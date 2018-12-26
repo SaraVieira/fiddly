@@ -3,7 +3,7 @@
   "description": "Create beautiful and simple HTML pages from your Readme.md files",
   "version": "0.2.0",
   "bin": {
-    "fiddly": "bin/fiddly"
+    "fiddly": "bin/fiddly.js"
   },
   "scripts": {
     "format": "prettier --write \"src/**/*.js\"",
