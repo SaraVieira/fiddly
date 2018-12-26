@@ -14,7 +14,9 @@
     "watch": "jest --watch",
     "coverage": "jest --coverage",
     "build": "./bin/fiddly.js",
-    "prepublish": "npm run test"
+    "prepublish": "npm run test",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "files": [
     "LICENSE",

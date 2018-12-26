@@ -14,13 +14,18 @@ const converter = new showdown.Converter({
   openLinksInNewWindow: true,
   backslashEscapesHTMLTags: true,
   emoji: true,
-  tablesHeaderId: true,
+  omitExtraWLInCodeBlocks: true,
+  parseImgDimensions: true,
+  strikethrough: true,
+  smoothLivePreview: true,
+  literalMidWordUnderscores: true,
+  simplifiedAutoLink: true,
+  encodeEmails: true,
   extensions: [
     require('../utils/header-anchors'),
     require('showdown-footnotes')
   ]
 })
-converter.setFlavor('github')
 
 const defaultOptions = {
   dist: 'public',
