@@ -86,7 +86,7 @@ If you have any HTML in your markdown that has children that are markdown, for e
 </div>
 ```
 
-In order for fiddly to render the inner contents as markdown you will need to add `data-markdown="1"` to the surroun ding element like so:
+In order for fiddly to render the inner contents as markdown you will need to add `data-markdown="1"` to the surrounding element like so:
 
 ```markdown
 <div align="center" data-markdown="1">

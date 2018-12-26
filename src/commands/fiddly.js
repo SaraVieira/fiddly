@@ -137,7 +137,7 @@ module.exports = {
 
       `)
     } catch (e) {
-      error('Oh no, there has beenm an error making your files')
+      error('Oh no, there has been an error making your files')
     }
   }
 }
