@@ -83,7 +83,8 @@ module.exports = {
 
     const images = markdown
       .match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim)
-      .map(image => image.split('./')[1].split(')')[0])
+      .filter(i => !i.includes('https'))
+      .map(image => (image.split('./')[1] || '').split(')')[0])
 
     try {
       images.map(i =>

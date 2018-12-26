@@ -125,6 +125,10 @@ h1, h2, h3 {
   align-items: center;
 }
 
+h1>a, h2>a, h3>a {
+  margin-top: 0
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
   font-family: "Playfair Display", serif;
