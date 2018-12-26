@@ -112,7 +112,7 @@ The Github corner comes from the repository url in your `package.json`. If none 
 - [ ] Support Multiple pages (if this exists in the config create several HTML files with a header and links to each page)
 - [ ] Allow users to input a css file to override the styles instead of all the styles in a json
 - [ ] Use sass so that the user can use sass too
-- [ ] Make All Contributors look nice
+- [x] Make All Contributors look nice
 - [ ] Allow option to change prism theme
 - [ ] Optimize images on copy
 - [ ] Have tests with cypress to make sure page looks okay
@@ -129,6 +129,7 @@ The Github corner comes from the repository url in your `package.json`. If none 
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/1051509?v=4" width="100px;"/><br /><sub><b>Sara Vieira</b></sub>](http://iamsaravieira.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=SaraVieira "Code") [🎨](#design-SaraVieira "Design") [🤔](#ideas-SaraVieira "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/4772980?v=4" width="100px;"/><br /><sub><b>Bruno Scheufler</b></sub>](https://brunoscheufler.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=BrunoScheufler "Code") | [<img src="https://avatars0.githubusercontent.com/u/1863771?v=4" width="100px;"/><br /><sub><b>Siddharth Kshetrapal</b></sub>](https://sid.studio)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=siddharthkp "Code") |
 | :---: | :---: | :---: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- ALL-CONTRIBUTORS-LIST: START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
