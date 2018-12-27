@@ -1,0 +1,11 @@
+{
+  "name": "testpkg",
+  "fiddly": {
+    "dist": "testoutput",
+    "styles": {
+      "h1": {
+        "font-size": "18em"
+      }
+    }
+  }
+}
