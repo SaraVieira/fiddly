@@ -47,7 +47,7 @@ By running this in the root folder you will also get a public folder
 
 ## Options
 
-Options are placed in a `.fiddly.config.json` and it contains the following options:
+Options are placed in a `.fiddly.config.json` or as a "fiddly" key in `package.json` and it contains the following options:
 
 | Option      | Default                     | Description                                                                           |
 | ----------- | --------------------------- | ------------------------------------------------------------------------------------- |
@@ -69,6 +69,23 @@ Options are placed in a `.fiddly.config.json` and it contains the following opti
     "h1": {
       "color": "blue",
       "backgroundColor": "red"
+    }
+  }
+}
+```
+
+Or in `package.json`:
+
+```json
+{
+  "name": "my-package",
+  // ...
+  "fiddly": {
+    "styles": {
+      "h1": {
+        "color": "blue",
+        "backgroundColor": "red"
+      }
     }
   }
 }

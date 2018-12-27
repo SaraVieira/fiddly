@@ -47,13 +47,15 @@ module.exports = {
       filesystem
     } = toolbox
 
+    const packageJSON =
+      filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
+
     const options = {
       ...defaultOptions,
+      ...(packageJSON.fiddly || {}),
       ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {})
     }
     const dist = options.dist
-    const packageJSON =
-      filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
     // CSS
     const css = filesystem

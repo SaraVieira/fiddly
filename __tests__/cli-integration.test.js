@@ -1,11 +1,10 @@
 const { system, filesystem } = require('gluegun')
-const { resolve } = require('path')
 
-const src = resolve(__dirname, '..')
+const src = filesystem.path(__dirname, '..')
 const success = `Generated your static files at public/`
 
 const cli = async cmd =>
-  system.run('node ' + resolve(src, 'bin', 'fiddly') + ` ${cmd}`)
+  system.run('node ' + filesystem.path(src, 'bin', 'fiddly') + ` ${cmd}`)
 
 test('generates html', async () => {
   const output = await cli()
@@ -41,4 +40,21 @@ test('generates dark', async () => {
 
   // cleanup artifact
   filesystem.remove('public')
+})
+
+test('reads config from package.json', async () => {
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/testpkg')
+
+  const output = await cli()
+
+  expect(output).toContain(success.replace('public', 'testoutput'))
+  const css = filesystem.read('testoutput/style.css')
+
+  expect(css).toContain(`font-size:18em`)
+
+  // cleanup artifact
+  filesystem.remove('testoutput')
+  process.chdir(prevDir)
 })
