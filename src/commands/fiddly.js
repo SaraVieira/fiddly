@@ -36,8 +36,12 @@ const defaultOptions = {
   description: null,
   styles: {},
   logo: '',
-  favicon: ''
+  favicon: '',
+  additionalFiles: []
 }
+
+// Set default filenames list to check for
+const DEFAULT_FILENAMES = ['readme.md', 'Readme.md', 'README.md']
 
 module.exports = {
   name: 'fiddly',
@@ -85,102 +89,120 @@ module.exports = {
     )
 
     // HTML
-    // Set default filenames list to check for
-    const DEFAULT_FILENAMES = ['readme.md', 'Readme.md', 'README.md']
-    let file
 
     // Check for `options.file`, if null, check if a default file exists, or error
     if (options.file === null) {
-      file = DEFAULT_FILENAMES.find(filename => {
-        return filesystem.exists(filename) ? filename : null
-      })
-
+      options.additionalFiles.unshift(
+        DEFAULT_FILENAMES.find(filename => {
+          return filesystem.exists(filename) ? filename : null
+        })
+      )
       // Throw error if no default file could be found
-      if (file === null) {
+      if (
+        options.additionalFiles[options.additionalFiles.length - 1] === null
+      ) {
         return error(
           `No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.`
         )
       }
     } else {
       // Set file to the given `options.file` value
-      file = options.file
+      options.additionalFiles.unshift(options.file)
     }
 
-    // Get markdown contents of given file
-    const markdown = filesystem.read(`${process.cwd()}/${file}`)
+    options.additionalFiles.map(async file => {
+      // Get markdown contents of given file
+      const markdown = filesystem.read(`${process.cwd()}/${file}`)
 
-    // Throw error if file does not exist and subsequently can't get markdown from the file.
-    if (typeof markdown === 'undefined') {
-      return error(`Cannot find file "${file}". Please ensure file exists.`)
-    }
+      // Throw error if file does not exist and subsequently can't get markdown from the file.
+      if (typeof markdown === 'undefined') {
+        return error(`Cannot find file "${file}". Please ensure file exists.`)
+      }
 
-    const description = options.description || packageJSON.description
-    const name = options.name || packageJSON.name
-    const githubCorner = packageJSON.repository
-      ? corner(packageJSON.repository.url, options.darkTheme)
-      : ''
-    const dark = options.darkTheme ? 'dark' : ''
+      const description = options.description || packageJSON.description
+      const name = options.name || packageJSON.name
+      const githubCorner = packageJSON.repository
+        ? corner(packageJSON.repository.url, options.darkTheme)
+        : ''
+      const dark = options.darkTheme ? 'dark' : ''
 
-    const images = (markdown.match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim) || [])
-      .filter(i => !i.includes('https'))
-      .map(image => (image.split('./')[1] || '').split(')')[0])
-
-    try {
-      images.map(i =>
-        filesystem.copy(
-          `${process.cwd()}/${i}`,
-          `${process.cwd()}/${dist}/${i}`,
-          { overwrite: true }
-        )
+      const images = (
+        markdown.match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim) || []
       )
-    } catch (e) {
-      warning(`
+        .filter(i => !i.includes('https'))
+        .map(image => (image.split('./')[1] || '').split(')')[0])
+
+      try {
+        images.map(i =>
+          filesystem.copy(
+            `${process.cwd()}/${i}`,
+            `${process.cwd()}/${dist}/${i}`,
+            { overwrite: true }
+          )
+        )
+      } catch (e) {
+        warning(`
 
                 Some images referenced were not found.
       `)
-    }
+      }
 
-    if (!options.favicon.includes('http') && options.favicon !== '') {
-      filesystem.copy(
-        `${process.cwd()}/${options.favicon}`,
-        `${process.cwd()}/${dist}/${options.favicon}`,
-        { overwrite: true }
-      )
-    }
+      if (!options.favicon.includes('http') && options.favicon !== '') {
+        filesystem.copy(
+          `${process.cwd()}/${options.favicon}`,
+          `${process.cwd()}/${dist}/${options.favicon}`,
+          { overwrite: true }
+        )
+      }
 
-    if (!options.logo.includes('http') && options.logo !== '') {
-      filesystem.copy(
-        `${process.cwd()}/${options.logo}`,
-        `${process.cwd()}/${dist}/${options.logo}`,
-        { overwrite: true }
-      )
-    }
+      if (!options.logo.includes('http') && options.logo !== '') {
+        filesystem.copy(
+          `${process.cwd()}/${options.logo}`,
+          `${process.cwd()}/${dist}/${options.logo}`,
+          { overwrite: true }
+        )
+      }
 
-    var html = createHTML({
-      title: name.charAt(0).toUpperCase() + name.slice(1),
-      css: fiddlyImports.css,
-      script: fiddlyImports.js,
-      lang: 'en',
-      head: head(description, name, options, packageJSON.homepage),
-      body: `<div id="fiddly"><div class="body ${dark}"><div class="container">${githubCorner}${header(
-        options,
-        name
-      )}${converter.makeHtml(markdown)}</div></div></div>`,
-      favicon: options.favicon
+      const isIndex = DEFAULT_FILENAMES.includes(file)
+
+      const fileName = isIndex
+        ? 'index'
+        : (file.split('/')[file.split('/').length - 1] || '').split('.md')[0]
+
+      const title = name.charAt(0).toUpperCase() + name.slice(1)
+
+      var html = createHTML({
+        title,
+        css: fiddlyImports.css,
+        script: fiddlyImports.js,
+        lang: 'en',
+        head: head(description, name, options, packageJSON.homepage),
+        body: `<div id="fiddly"><div class="body ${dark}"><div class="container">${githubCorner}${header(
+          options,
+          name,
+          options.additionalFiles
+        )}${converter.makeHtml(markdown)}</div></div></div>`,
+        favicon: options.favicon
+      })
+      try {
+        await filesystem.write(
+          `${process.cwd()}/${dist}/${fileName.toLowerCase()}.html`,
+          html
+        )
+      } catch (e) {
+        error('Oh no, there has been an error making your file', file)
+      }
     })
 
-    try {
-      await filesystem.write(`${process.cwd()}/${dist}/index.html`, html)
-      info(`
+    info(`
 
                 Generated your static files at ${dist}/
       `)
-      success(`
+    success(`
       🎉   You can deploy the ${dist} folder to a static server    🎉
 
       `)
-    } catch (e) {
-      error('Oh no, there has been an error making your files')
-    }
   }
 }
+
+exports.DEFAULT_FILENAMES = DEFAULT_FILENAMES

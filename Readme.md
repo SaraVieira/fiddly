@@ -49,17 +49,18 @@ By running this in the root folder you will also get a public folder
 
 Options are placed in a `.fiddly.config.json` or as a "fiddly" key in `package.json` and it contains the following options:
 
-| Option      | Default                            | Description                                                  |
-| ----------- | ---------------------------------- | ------------------------------------------------------------ |
-| file        | Readme.md, readme.md, or README.md | Your Readme.md name                                          |
-| name        | name in package.json               | The project name that is in the title and the header         |
-| logo        | ''                                 | The project logo that is in the header                       |
-| description | description in package.json        | The project description for metaTags                         |
-| noHeader    | false                              | Show no header and just the markdown content                 |
-| darkTheme   | false                              | Dark theme ofc 🎉                                            |
-| favicon     | ''                                 | Favicon url or local path                                    |
-| dist        | public                             | To what folder to render your HTML                           |
-| styles      | {}                                 | Styles to apply to the page. Object or path to css/scss file |
+| Option          | Default                            | Description                                                               |
+| --------------- | ---------------------------------- | ------------------------------------------------------------------------- |
+| file            | Readme.md, readme.md, or README.md | Your Readme.md name                                                       |
+| name            | name in package.json               | The project name that is in the title and the header                      |
+| logo            | ''                                 | The project logo that is in the header                                    |
+| description     | description in package.json        | The project description for metaTags                                      |
+| noHeader        | false                              | Show no header and just the markdown content                              |
+| darkTheme       | false                              | Dark theme ofc 🎉                                                         |
+| favicon         | ''                                 | Favicon url or local path                                                 |
+| dist            | public                             | To what folder to render your HTML                                        |
+| styles          | {}                                 | Styles to apply to the page. Object or path to css/scss file              |
+| additionalFiles | []                                 | Any other pages to create. It expects an array of paths of markdown files |
 
 ### Example of styles
 
@@ -123,7 +124,7 @@ The Github corner comes from the repository url in your `package.json`. If none 
 ## TODO
 
 - [ ] Deploy using magic to GH Pages too
-- [ ] Support Multiple pages (if this exists in the config create several HTML files with a header and links to each page)
+- [x] Support Multiple pages (if this exists in the config create several HTML files with a header and links to each page)
 - [x] Allow users to input a css file to override the styles instead of all the styles in a json
 - [x] Use sass so that the user can use sass too
 - [x] Make All Contributors look nice
