@@ -91,7 +91,9 @@ module.exports = {
 
       // Throw error if no default file could be found
       if (file === null) {
-        throw new TypeError(`No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.`)
+        throw new TypeError(
+          `No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.`
+        )
       }
     } else {
       // Set file to the given `options.file` value
@@ -103,7 +105,9 @@ module.exports = {
 
     // Throw error if file does not exist and subsequently can't get markdown from the file.
     if (typeof markdown === 'undefined') {
-      throw new TypeError(`Cannot find file "${file}". Please ensure file exists.`)
+      throw new TypeError(
+        `Cannot find file "${file}". Please ensure file exists.`
+      )
     }
 
     const description = options.description || packageJSON.description
