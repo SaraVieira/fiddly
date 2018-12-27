@@ -49,17 +49,17 @@ By running this in the root folder you will also get a public folder
 
 Options are placed in a `.fiddly.config.json` and it contains the following options:
 
-| Option      | Default                     | Description                                                                           |
-| ----------- | --------------------------- | ------------------------------------------------------------------------------------- |
-| file        | Readme                      | Your Readme.md name                                                                   |
-| name        | name in package.json        | The project name that is in the title and the header                                  |
-| logo        | ''                          | The project logo that is in the header                                                |
-| description | description in package.json | The project description for metaTags                                                  |
-| noHeader    | false                       | Show no header and just the markdown content                                          |
-| darkTheme   | false                       | Dark theme ofc 🎉                                                                     |
-| favicon     | ''                          | Favicon url or local path                                                             |
-| dist        | public                      | To what folder to render your HTML                                                    |
-| styles      | {}                          | Styles to apply to the page. This will override everything else. Use any css selector |
+| Option      | Default                               | Description                                                                           |
+| ----------- | ------------------------------------- | ------------------------------------------------------------------------------------- |
+| file        | Readme.md, readme.md, or README.md    | Your Readme.md name                                                                   |
+| name        | name in package.json                  | The project name that is in the title and the header                                  |
+| logo        | ''                                    | The project logo that is in the header                                                |
+| description | description in package.json           | The project description for metaTags                                                  |
+| noHeader    | false                                 | Show no header and just the markdown content                                          |
+| darkTheme   | false                                 | Dark theme ofc 🎉                                                                     |
+| favicon     | ''                                    | Favicon url or local path                                                             |
+| dist        | public                                | To what folder to render your HTML                                                    |
+| styles      | {}                                    | Styles to apply to the page. This will override everything else. Use any css selector |
 
 ### Example of styles
 
