@@ -1,9 +1,9 @@
 const showdown = require('showdown')
 const toCss = require('to-css')
 const CleanCSS = require('clean-css')
+var sass = require('node-sass')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
-const capitalize = require('../utils/capitalize')
 const fiddlyImports = require('../utils/fiddlyImports.js')
 const head = require('../utils/head.js')
 const header = require('../utils/header.js')
@@ -58,20 +58,26 @@ module.exports = {
     const dist = options.dist
 
     // CSS
-    const css = filesystem
-      .read(`${__dirname}/css/normalize.css`)
-      .concat(filesystem.read(`${__dirname}/css/tacit.css`))
-      .concat(filesystem.read(`${__dirname}/css/prism.css`))
-      .concat(filesystem.read(`${__dirname}/css/gh-corner.css`))
-      .concat(filesystem.read(`${__dirname}/css/style.css`))
-      .concat(filesystem.read(`${__dirname}/css/dark.css`))
-      .concat(
-        toCss(options.styles, {
-          selector: s => `#fiddly ${s}`,
-          property: p =>
-            p.replace(/([A-Z])/g, matches => `-${matches[0].toLowerCase()}`)
-        })
-      )
+    const getAdditionalStyles = () => {
+      if (typeof options.styles === 'string') {
+        return filesystem.read(`${process.cwd()}/${options.styles}`)
+      }
+
+      return toCss(options.styles, {
+        selector: s => `#fiddly ${s}`,
+        property: p =>
+          p.replace(/([A-Z])/g, matches => `-${matches[0].toLowerCase()}`)
+      })
+    }
+
+    const css = sass
+      .renderSync({
+        data: filesystem
+          .read(`${__dirname}/css/style.scss`)
+          .concat(getAdditionalStyles()),
+        includePaths: [`${__dirname}/css`]
+      })
+      .css.toString()
 
     await filesystem.write(
       `${process.cwd()}/${dist}/style.css`,
@@ -91,7 +97,7 @@ module.exports = {
 
       // Throw error if no default file could be found
       if (file === null) {
-        throw new TypeError(
+        return error(
           `No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.`
         )
       }
@@ -105,9 +111,7 @@ module.exports = {
 
     // Throw error if file does not exist and subsequently can't get markdown from the file.
     if (typeof markdown === 'undefined') {
-      throw new TypeError(
-        `Cannot find file "${file}". Please ensure file exists.`
-      )
+      return error(`Cannot find file "${file}". Please ensure file exists.`)
     }
 
     const description = options.description || packageJSON.description
@@ -130,7 +134,10 @@ module.exports = {
         )
       )
     } catch (e) {
-      warning('Some images referenced were not found.')
+      warning(`
+
+                Some images referenced were not found.
+      `)
     }
 
     if (!options.favicon.includes('http') && options.favicon !== '') {
@@ -150,7 +157,7 @@ module.exports = {
     }
 
     var html = createHTML({
-      title: capitalize(name),
+      title: name.charAt(0).toUpperCase() + name.slice(1),
       css: fiddlyImports.css,
       script: fiddlyImports.js,
       lang: 'en',
