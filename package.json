@@ -16,7 +16,8 @@
     "build": "./bin/fiddly.js",
     "prepublish": "npm run test",
     "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate"
+    "contributors:generate": "all-contributors generate",
+    "now-build": "npm run build"
   },
   "files": [
     "LICENSE",
