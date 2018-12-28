@@ -47,6 +47,8 @@ For Now to build fiddly when deploying, to ensure a fresh build for each deploym
 }
 ```
 
+For more info you can check the [Now docs](https://zeit.co/docs/)
+
 ## Surge
 
 To deploy with Surge you need a http://surge.sh account and then to install the surge cli or like me run with npx.
