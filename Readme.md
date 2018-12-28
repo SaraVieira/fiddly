@@ -153,8 +153,6 @@ You can run this by using the `lint` command
 
 - [ ] Deploy using magic to GH Pages too
 - [ ] Allow option to change prism theme
-- [ ] Have tests with cypress to make sure page looks okay
-- [ ] Have more tests and find way to mock the input file in it
 
 ## Acknowledgements
 

@@ -10,42 +10,40 @@ test('generates html', async () => {
   const output = await cli()
 
   expect(output).toContain(success)
-  const index = filesystem.read('public/index.html')
+  expect(filesystem.exists('public/index.html')).toBeTruthy()
 
-  expect(index).toContain(`<!doctype html>`)
-
-  // cleanup artifact
   filesystem.remove('public')
 })
 
 test('generates css', async () => {
   const output = await cli()
-
   expect(output).toContain(success)
-  const css = filesystem.read('public/style.css')
 
-  expect(css).toContain(`body{`)
+  expect(filesystem.exists('public/style.css')).toBeTruthy()
 
-  // cleanup artifact
   filesystem.remove('public')
 })
 
 test('generates dark', async () => {
-  const output = await cli('--config=one.json')
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/test-readme/dark/')
+
+  const output = await cli()
 
   expect(output).toContain(success)
-  const css = filesystem.read('public/style.css')
+  const html = filesystem.read('public/index.html')
 
-  expect(css).toContain(`body{`)
+  expect(html).toContain(`<div class="body dark">`)
 
-  // cleanup artifact
   filesystem.remove('public')
+  process.chdir(prevDir)
 })
 
 test('reads config from package.json', async () => {
   const prevDir = process.cwd()
 
-  process.chdir('./__tests__/testpkg')
+  process.chdir('./__tests__/test-readme/package-json')
 
   const output = await cli()
 
@@ -54,7 +52,89 @@ test('reads config from package.json', async () => {
 
   expect(css).toContain(`font-size:18em`)
 
-  // cleanup artifact
   filesystem.remove('testoutput')
+  process.chdir(prevDir)
+})
+
+test('generates several files', async () => {
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/test-readme/several-files')
+
+  const output = await cli()
+
+  expect(output).toContain(success)
+
+  expect(filesystem.exists('public/index.html')).toBeTruthy()
+  expect(filesystem.exists('public/one.html')).toBeTruthy()
+
+  filesystem.remove('public')
+  process.chdir(prevDir)
+})
+
+test('spectrum test', async () => {
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/test-readme/spectrum')
+
+  const output = await cli()
+
+  expect(output).toContain(success)
+  const html = filesystem.read('public/index.html')
+
+  expect(html).toContain('Simple, powerful online communities')
+
+  expect(filesystem.exists('public/index.html')).toBeTruthy()
+
+  filesystem.remove('public')
+  process.chdir(prevDir)
+})
+
+test('noHeader test', async () => {
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/test-readme/noHeader')
+
+  const output = await cli()
+
+  expect(output).toContain(success)
+
+  const html = filesystem.read('public/index.html')
+
+  expect(html).not.toContain('<header')
+
+  expect(filesystem.exists('public/index.html')).toBeTruthy()
+
+  filesystem.remove('public')
+  process.chdir(prevDir)
+})
+
+test('logo test', async () => {
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/test-readme/logo')
+
+  const output = await cli()
+
+  expect(output).toContain(success)
+
+  expect(filesystem.exists('public/logo.png')).toBeTruthy()
+
+  filesystem.remove('public')
+  process.chdir(prevDir)
+})
+
+test('Image test', async () => {
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/test-readme/duplicate-images')
+
+  const output = await cli()
+
+  expect(output).toContain(success)
+
+  expect(filesystem.exists('public/logo.png')).toBeTruthy()
+
+  filesystem.remove('public')
   process.chdir(prevDir)
 })

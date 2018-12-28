@@ -174,7 +174,7 @@ module.exports = {
         ? 'index'
         : (file.substring(file.lastIndexOf('/') + 1) || '').split('.md')[0]
 
-      const title = name.charAt(0).toUpperCase() + name.slice(1)
+      const title = name ? name.charAt(0).toUpperCase() + name.slice(1) : ''
 
       var html = createHTML({
         title,

@@ -1,8 +1,4 @@
-exports.css = [
-  'https://fonts.googleapis.com/css?family=Lato',
-  'https://fonts.googleapis.com/css?family=Playfair+Display:700i,900',
-  'style.css'
-]
+exports.css = ['style.css']
 
 exports.js = [
   'https://unpkg.com/prismjs@1.15.0/prism.js',
