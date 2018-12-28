@@ -151,4 +151,4 @@ The Github corner comes from the repository url in your `package.json`. If none 
 
 ## License
 
-MIT - see [LICENSE](https://github.com/SaraVieira/fiddly/blob/master/LICENSE)
+MIT - see [LICENSE](https://github.com/SaraVieira/fiddly/blob/master/LICENSE.md)
