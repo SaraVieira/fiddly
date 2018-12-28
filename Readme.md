@@ -37,7 +37,11 @@ Deploy automatically to netlify 🎉
 
 ## Usage with npx
 
+<!-- markdownlint-disable -->
+
 If you just want a quick fancy HTML page from the Readme but don't care about running this in continuous deployment you can also use `npx` to run it as a one time thing.
+
+<!-- markdownlint-enable -->
 
 ```bash
   npx fiddly
@@ -47,7 +51,10 @@ By running this in the root folder you will also get a public folder
 
 ## Options
 
-Options are placed in a `.fiddly.config.json` or as a "fiddly" key in `package.json` and it contains the following options:
+Options are placed in a `.fiddly.config.json` or as a `fiddly` key in `package.json`.
+It can contains the following options:
+
+<!-- markdownlint-disable -->
 
 | Option          | Default                            | Description                                                               |
 | --------------- | ---------------------------------- | ------------------------------------------------------------------------- |
@@ -62,9 +69,12 @@ Options are placed in a `.fiddly.config.json` or as a "fiddly" key in `package.j
 | styles          | {}                                 | Styles to apply to the page. Object or path to css/scss file              |
 | additionalFiles | []                                 | Any other pages to create. It expects an array of paths of markdown files |
 
+<!-- markdownlint-enable -->
+
 ### Example of styles
 
-For styles you can either use a style object like so and that will override the default styles applied. Like so:
+For styles you can either use a style object like so and that will override the
+default styles applied. Like so:
 
 ```json
 {
@@ -77,7 +87,10 @@ For styles you can either use a style object like so and that will override the 
 }
 ```
 
-Another option is to give the path to a local css or scss file that will be the last one added. In this case you need to override any specificity issues. You cab by using the `#fiddly` id. Example:
+Another option is to give the path to a local css or scss file.
+In this case you need to override any specificity issues.
+You cab by using the `#fiddly` id.
+Example:
 
 ```css
 body {
@@ -93,7 +106,8 @@ body {
 
 ## HTML in Markdown
 
-If you have any HTML in your markdown that has children that are markdown, for example a div like this:
+If you have any HTML in your markdown that has children that are markdown.
+For example a div like this:
 
 ```markdown
 <div align="center">
@@ -101,7 +115,8 @@ If you have any HTML in your markdown that has children that are markdown, for e
 </div>
 ```
 
-In order for fiddly to render the inner contents as markdown you will need to add `data-markdown="1"` to the surrounding element like so:
+In order for fiddly to render the inner contents as markdown you will need to add
+`data-markdown="1"` to the surrounding element like so:
 
 ```markdown
 <div align="center" data-markdown="1">
@@ -115,19 +130,27 @@ You can see the issue regarding showdown [here](https://github.com/showdownjs/sh
 
 ## Images
 
-Any images linked in your markdown that are local will be copied to your public folder. If some image is not found it will be ignored.
+Any images linked in your markdown that are local will be copied to your public folder.
+If some image is not found it will be ignored.
 
 ## Github Corner
 
-The Github corner comes from the repository url in your `package.json`. If none is present it will not be shown.
+The Github corner comes from the repository url in your `package.json`.
+If none is present it will not be shown.
+
+## Lint
+
+Fiddly also exports a command to let you lint all the markdown files you specified.
+
+You can run this by using the `lint` command
+
+```json
+"lint:md" : "fiddly lint"
+```
 
 ## TODO
 
 - [ ] Deploy using magic to GH Pages too
-- [x] Support Multiple pages (if this exists in the config create several HTML files with a header and links to each page)
-- [x] Allow users to input a css file to override the styles instead of all the styles in a json
-- [x] Use sass so that the user can use sass too
-- [x] Make All Contributors look nice
 - [ ] Allow option to change prism theme
 - [ ] Optimize images on copy
 - [ ] Have tests with cypress to make sure page looks okay
@@ -140,14 +163,21 @@ The Github corner comes from the repository url in your `package.json`. If none 
 
 ## Contributors
 
+<!-- markdownlint-disable -->
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/1051509?v=4" width="100px;"/><br /><sub><b>Sara Vieira</b></sub>](http://iamsaravieira.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=SaraVieira "Code") [🎨](#design-SaraVieira "Design") [🤔](#ideas-SaraVieira "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/4772980?v=4" width="100px;"/><br /><sub><b>Bruno Scheufler</b></sub>](https://brunoscheufler.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=BrunoScheufler "Code") | [<img src="https://avatars0.githubusercontent.com/u/1863771?v=4" width="100px;"/><br /><sub><b>Siddharth Kshetrapal</b></sub>](https://sid.studio)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=siddharthkp "Code") | [<img src="https://avatars3.githubusercontent.com/u/1479215?v=4" width="100px;"/><br /><sub><b>Jamon Holmgren</b></sub>](https://jamonholmgren.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=jamonholmgren "Code") | [<img src="https://avatars0.githubusercontent.com/u/1695613?v=4" width="100px;"/><br /><sub><b>Timothy</b></sub>](http://timothy.is)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=timothyis "Code") | [<img src="https://avatars2.githubusercontent.com/u/13808724?v=4" width="100px;"/><br /><sub><b>Andrew Cherniavskii</b></sub>](https://github.com/cherniavskii)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=cherniavskii "Code") |
 | :---: | :---: | :---: | :---: | :---: | :---: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- ALL-CONTRIBUTORS-LIST: START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- markdownlint-enable -->
 
 ## License
 
 MIT - see [LICENSE](https://github.com/SaraVieira/fiddly/blob/master/LICENSE.md)
+
+```
+
+```

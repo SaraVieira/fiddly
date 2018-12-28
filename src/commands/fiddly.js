@@ -7,6 +7,7 @@ const corner = require('../utils/githubCorner')
 const fiddlyImports = require('../utils/fiddlyImports.js')
 const head = require('../utils/head.js')
 const header = require('../utils/header.js')
+const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
 
 const converter = new showdown.Converter({
   tables: true,
@@ -39,9 +40,6 @@ const defaultOptions = {
   favicon: '',
   additionalFiles: []
 }
-
-// Set default filenames list to check for
-const DEFAULT_FILENAMES = ['readme.md', 'Readme.md', 'README.md']
 
 module.exports = {
   name: 'fiddly',
