@@ -1,7 +1,8 @@
 const showdown = require('showdown')
 const toCss = require('to-css')
 const CleanCSS = require('clean-css')
-var sass = require('node-sass')
+const compressImages = require('compress-images')
+const sass = require('node-sass')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
 const fiddlyImports = require('../utils/fiddlyImports.js')
@@ -45,7 +46,7 @@ module.exports = {
   name: 'fiddly',
   run: async toolbox => {
     const {
-      print: { info, success, error, warning },
+      print: { info, success, error },
       filesystem
     } = toolbox
 
@@ -130,20 +131,26 @@ module.exports = {
         .filter(i => !i.includes('https'))
         .map(image => (image.split('./')[1] || '').split(')')[0])
 
-      try {
-        images.map(i =>
-          filesystem.copy(
+      images.map(i => {
+        if (filesystem.exists(`${process.cwd()}/${i}`)) {
+          compressImages(
             `${process.cwd()}/${i}`,
-            `${process.cwd()}/${dist}/${i}`,
-            { overwrite: true }
+            `${process.cwd()}/${dist}/${i.substring(0, i.lastIndexOf('/'))}/`,
+            { compress_force: false, statistic: false, autoupdate: true },
+            false,
+            { jpg: { engine: 'mozjpeg', command: ['-quality', '60'] } },
+            { png: { engine: 'pngquant', command: ['--quality=20-50'] } },
+            { svg: { engine: 'svgo', command: '--multipass' } },
+            {
+              gif: {
+                engine: 'gifsicle',
+                command: ['--colors', '64', '--use-col=web']
+              }
+            },
+            () => {}
           )
-        )
-      } catch (e) {
-        warning(`
-
-                Some images referenced were not found.
-      `)
-      }
+        }
+      })
 
       if (!options.favicon.includes('http') && options.favicon !== '') {
         filesystem.copy(
@@ -165,7 +172,7 @@ module.exports = {
 
       const fileName = isIndex
         ? 'index'
-        : (file.split('/')[file.split('/').length - 1] || '').split('.md')[0]
+        : (file.substring(file.lastIndexOf('/') + 1) || '').split('.md')[0]
 
       const title = name.charAt(0).toUpperCase() + name.slice(1)
 

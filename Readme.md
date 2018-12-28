@@ -8,6 +8,7 @@ Create beautiful and simple HTML pages from your Readme.md files
 - ✨Creates Static files (only JS is prism)
 - 🏳️‍🌈 Pretty Pages
 - 🦄 Customizable
+- 🖼 Image minification
 - 🇳🇱 [CodeSandbox](https://codesandbox.io) and iframe Support
 
 ```bash
@@ -130,7 +131,7 @@ You can see the issue regarding showdown [here](https://github.com/showdownjs/sh
 
 ## Images
 
-Any images linked in your markdown that are local will be copied to your public folder.
+Any images linked in your markdown that are local will be minified and copied to your dist folder.
 If some image is not found it will be ignored.
 
 ## Github Corner
@@ -152,7 +153,6 @@ You can run this by using the `lint` command
 
 - [ ] Deploy using magic to GH Pages too
 - [ ] Allow option to change prism theme
-- [ ] Optimize images on copy
 - [ ] Have tests with cypress to make sure page looks okay
 - [ ] Have more tests and find way to mock the input file in it
 
