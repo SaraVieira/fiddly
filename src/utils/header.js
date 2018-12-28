@@ -23,7 +23,9 @@ module.exports = (options, name, pages) => {
               .map(
                 page =>
                   `<li><a href="/${
-                    fileName(page) === 'Home' ? '' : fileName(page)
+                    fileName(page) === 'Home'
+                      ? ''
+                      : fileName(page).toLowerCase()
                   }">${capitalize(fileName(page))}</a></li>`
               )
               .join('')}</ul></nav>`

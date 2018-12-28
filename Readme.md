@@ -51,6 +51,7 @@ By running this in the root folder you will also get a public folder
 
 ## Options
 
+
 Options are placed in a `.fiddly.config.json` or as a `fiddly` key in `package.json`.
 It can contains the following options:
 
