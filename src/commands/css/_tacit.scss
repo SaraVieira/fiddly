@@ -23,6 +23,7 @@ th {
 td, th {
   border-bottom: 1.08px solid #595959;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 14px 10px;
   text-align: left;
   vertical-align: top
@@ -35,7 +36,8 @@ thead th {
 
 table {
   display: block;
-  overflow-x: auto
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 input, textarea, select, button, option {
@@ -164,6 +166,7 @@ pre {
   border-left: 1.8px solid #59c072;
   line-height: 25.2px;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   padding-left: 18px
 }
 
