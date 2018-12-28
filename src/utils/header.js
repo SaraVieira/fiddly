@@ -1,4 +1,4 @@
-const DEFAULT_FILENAMES = ['readme.md', 'Readme.md', 'README.md']
+const DEFAULT_FILENAMES = require('./DEFAULT_FILENAMES')
 
 const capitalize = name =>
   name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
