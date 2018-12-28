@@ -39,7 +39,9 @@ const defaultOptions = {
   styles: {},
   logo: '',
   favicon: '',
-  additionalFiles: []
+  additionalFiles: [],
+  homepage: null,
+  repo: null
 }
 
 module.exports = {
@@ -120,9 +122,13 @@ module.exports = {
 
       const description = options.description || packageJSON.description
       const name = options.name || packageJSON.name
-      const githubCorner = packageJSON.repository
-        ? corner(packageJSON.repository.url, options.darkTheme)
-        : ''
+      const githubCorner =
+        options.repo || packageJSON.repository
+          ? corner(
+              options.repo || packageJSON.repository.url,
+              options.darkTheme
+            )
+          : ''
       const dark = options.darkTheme ? 'dark' : ''
 
       const images = (
@@ -181,7 +187,12 @@ module.exports = {
         css: fiddlyImports.css,
         script: fiddlyImports.js,
         lang: 'en',
-        head: head(description, name, options, packageJSON.homepage),
+        head: head(
+          description,
+          name,
+          options,
+          options.homepage || packageJSON.homepage
+        ),
         body: `<div id="fiddly"><div class="body ${dark}"><div class="container">${githubCorner}${header(
           options,
           name,

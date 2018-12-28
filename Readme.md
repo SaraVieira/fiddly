@@ -34,7 +34,7 @@ Deploy automatically to netlify 🎉
 
 [This Readme on Netlify](https://fiddly.netlify.com/)
 
-[This Readme with white theme](https://5c211293454e136fac543e8d--fiddly.netlify.com/)
+[This Readme with white theme](https://5c2678b67b891f18dc5a2a42--fiddly.netlify.com/)
 
 ## Usage with npx
 
@@ -63,12 +63,14 @@ It can contains the following options:
 | name            | name in package.json               | The project name that is in the title and the header                      |
 | logo            | ''                                 | The project logo that is in the header                                    |
 | description     | description in package.json        | The project description for metaTags                                      |
+| homepage        | null                               | The project homepage for metaTags                                         |
 | noHeader        | false                              | Show no header and just the markdown content                              |
 | darkTheme       | false                              | Dark theme ofc 🎉                                                         |
 | favicon         | ''                                 | Favicon url or local path                                                 |
 | dist            | public                             | To what folder to render your HTML                                        |
 | styles          | {}                                 | Styles to apply to the page. Object or path to css/scss file              |
 | additionalFiles | []                                 | Any other pages to create. It expects an array of paths of markdown files |
+| repo            | null                               | Link to point the github corner                                           |
 
 <!-- markdownlint-enable -->
 
@@ -136,7 +138,8 @@ If some image is not found it will be ignored.
 
 ## Github Corner
 
-The Github corner comes from the repository url in your `package.json`.
+The Github corner comes from either the `repo` option in your `.fiddly.config.json`
+or from the repository url in your `package.json`.
 If none is present it will not be shown.
 
 ## Lint
