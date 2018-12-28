@@ -1,5 +1,13 @@
 # Deployment
 
+<br/>
+
+- [Netlify](#netlify)
+- [Now](#now)
+- [Surge](#surge)
+- [Github Pages](#githubpages)
+- [Gitlab Pages](#gitlabpages)
+
 ## Netlify
 
 Head over to https://netlify.com and click on new site from git:
@@ -38,6 +46,14 @@ After this if you build script is already fiddly you are good to go. If not you 
   "now-build": "npm run build"
 }
 ```
+
+## Surge
+
+To deploy with Surge you need a http://surge.sh account and then to install the surge cli or like me run with npx.
+It will ask you to login and after that it wants to know the project path. In here you put the dist folder.
+After that pick and domain and done 🎉
+
+![Surge](./media/surge.png)
 
 ## Github Pages
 
