@@ -22,7 +22,7 @@ _The public folder may be a different one depending on the dist folder you selec
 
 ## Now
 
-To use now first create a file called `now.json` and put the follwing options in it:
+To use Now, first create a file called `now.json` and put the following options in it:
 
 ```json
 {
@@ -39,11 +39,11 @@ To use now first create a file called `now.json` and put the follwing options in
 
 _The distDir folder may be a different one depending on the dist folder you selected_
 
-After this if you build script is already fiddly you are good to go. If not you should add a `now-build` to let now know it should use that to build your site.
+For Now to build fiddly when deploying, to ensure a fresh build for each deployment, add the following script to your `package.json` scripts list to let Now know to use fiddly to build your readme as the index.
 
 ```json
 {
-  "now-build": "npm run build"
+  "now-build": "fiddly"
 }
 ```
 
