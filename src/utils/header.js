@@ -11,7 +11,7 @@ module.exports = (options, name, pages) => {
       : (file.split('/')[file.split('/').length - 1] || '').split('.md')[0]
   }
 
-  const absoluteURL = path => `${options.pathPrefix}${path}`
+  const absolutePath = path => `${options.pathPrefix}${path}`
 
   const fileHref = file =>
     fileName(file) === 'Home' ? '' : fileName(file).toLowerCase()
@@ -19,7 +19,7 @@ module.exports = (options, name, pages) => {
   return options && !options.noHeader
     ? `<header>${name ? `<h1>${name}</h1>` : ''}${
         options.logo !== ''
-          ? `<img class="logo" src="${absoluteURL(
+          ? `<img class="logo" src="${absolutePath(
               options.logo
             )}" alt="${name} logo" />`
           : ''
@@ -29,7 +29,7 @@ module.exports = (options, name, pages) => {
           ? `<nav><ul>${pages
               .map(
                 page =>
-                  `<li><a href="${absoluteURL(fileHref(page))}">${capitalize(
+                  `<li><a href="${absolutePath(fileHref(page))}">${capitalize(
                     fileName(page)
                   )}</a></li>`
               )
