@@ -43,7 +43,8 @@ const defaultOptions = {
   favicon: '',
   additionalFiles: [],
   homepage: null,
-  repo: null
+  repo: null,
+  pathPrefix: `${process.env.PATH_PREFIX || ''}`
 }
 
 module.exports = {
@@ -92,6 +93,9 @@ module.exports = {
     )
 
     // HTML
+
+    // Add trailing slash if missing
+    options.pathPrefix = options.pathPrefix.replace(/\/?$/, '/')
 
     // Check for `options.file`, if null, check if a default file exists, or error
     if (options.file === null) {

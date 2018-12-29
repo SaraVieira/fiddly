@@ -63,4 +63,19 @@ After that pick and domain and done 🎉
 
 ## Gitlab Pages
 
-// Todo
+To deploy to Gitlab Pages add a new job with the title _pages_ in your `.gitlab-ci.yml` configuration file.
+Gitlab Pages hosts your static files at https://<group-or-user-name>.gitlab.io/<project-name>.
+You can use the `PATH_PREFIX` environment variable to configure your fiddly build.
+🎉
+
+```yml
+pages:
+  image: node
+  script:
+    - PATH_PREFIX="/$CI_PROJECT_NAME" npx fiddly
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+```

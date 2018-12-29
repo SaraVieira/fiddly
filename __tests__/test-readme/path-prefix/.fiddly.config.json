@@ -1,0 +1,5 @@
+{
+  "additionalFiles": ["./one.md"],
+  "pathPrefix": "/fiddly-rocks",
+  "logo": "logo.png"
+}

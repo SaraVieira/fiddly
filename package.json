@@ -55,6 +55,7 @@
     "to-css": "^1.2.1"
   },
   "devDependencies": {
+    "all-contributors-cli": "^5.5.0",
     "eslint": "^5.11.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",

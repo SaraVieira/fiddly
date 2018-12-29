@@ -138,3 +138,21 @@ test('Image test', async () => {
   filesystem.remove('public')
   process.chdir(prevDir)
 })
+
+test('Prefixes logo and additional file paths', async () => {
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/test-readme/path-prefix')
+
+  const output = await cli()
+
+  expect(output).toContain(success)
+  expect(filesystem.exists('public/index.html')).toBeTruthy()
+  const html = filesystem.read('public/index.html')
+
+  expect(html).toContain(`href="/fiddly-rocks/one"`)
+  expect(html).toContain(`src="/fiddly-rocks/logo.png"`)
+
+  filesystem.remove('public')
+  process.chdir(prevDir)
+})
