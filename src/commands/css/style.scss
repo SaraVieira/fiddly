@@ -1,8 +1,15 @@
 @import 'https://unpkg.com/normalize.css@8.0.1/normalize.css';
-@import 'https://unpkg.com/prismjs@1.15.0/themes/prism.css';
 @import 'https://fonts.googleapis.com/css?family=Lato';
 @import 'https://fonts.googleapis.com/css?family=Playfair+Display:700i,900';
 @import 'tacit';
 @import 'main';
 @import 'gh-corner';
 @import 'dark';
+
+.body.light {
+  @import 'prism-theme';
+}
+
+.body.dark {
+  @import './night-owl';
+}

@@ -1,7 +1,9 @@
 const showdown = require('showdown')
 const toCss = require('to-css')
 const CleanCSS = require('clean-css')
-const compressImages = require('compress-images')
+const imagemin = require('imagemin')
+const imageminJpegtran = require('imagemin-jpegtran')
+const imageminPngquant = require('imagemin-pngquant')
 const sass = require('node-sass')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
@@ -129,7 +131,7 @@ module.exports = {
               options.darkTheme
             )
           : ''
-      const dark = options.darkTheme ? 'dark' : ''
+      const dark = options.darkTheme ? 'dark' : 'light'
 
       const images = (
         markdown.match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim) || []
@@ -137,23 +139,17 @@ module.exports = {
         .filter(i => !i.includes('https'))
         .map(image => (image.split('./')[1] || '').split(')')[0])
 
-      images.map(i => {
+      images.map(async i => {
         if (filesystem.exists(`${process.cwd()}/${i}`)) {
-          compressImages(
-            `${process.cwd()}/${i}`,
+          await imagemin(
+            [`${process.cwd()}/${i}`],
             `${process.cwd()}/${dist}/${i.substring(0, i.lastIndexOf('/'))}/`,
-            { compress_force: false, statistic: false, autoupdate: true },
-            false,
-            { jpg: { engine: 'mozjpeg', command: ['-quality', '60'] } },
-            { png: { engine: 'pngquant', command: ['--quality=20-50'] } },
-            { svg: { engine: 'svgo', command: '--multipass' } },
             {
-              gif: {
-                engine: 'gifsicle',
-                command: ['--colors', '64', '--use-col=web']
-              }
-            },
-            () => {}
+              plugins: [
+                imageminJpegtran(),
+                imageminPngquant({ quality: '65-80' })
+              ]
+            }
           )
         }
       })

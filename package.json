@@ -43,9 +43,11 @@
   "license": "MIT",
   "dependencies": {
     "clean-css": "^4.2.1",
-    "compress-images": "^1.4.6",
     "create-html": "^4.1.0",
     "gluegun": "2.0.3",
+    "imagemin": "^6.1.0",
+    "imagemin-jpegtran": "^6.0.0",
+    "imagemin-pngquant": "^6.0.1",
     "markdownlint": "^0.11.0",
     "node-sass": "^4.11.0",
     "showdown": "^1.9.0",
