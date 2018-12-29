@@ -151,6 +151,7 @@ test('Prefixes logo and additional file paths', async () => {
   const html = filesystem.read('public/index.html')
 
   expect(html).toContain(`href="/fiddly-rocks/one"`)
+  expect(html).toContain(`src="/fiddly-rocks/logo.png"`)
 
   filesystem.remove('public')
   process.chdir(prevDir)
