@@ -64,11 +64,11 @@ After that pick and domain and done 🎉
 ## Gitlab Pages
 
 To deploy to Gitlab Pages add a new job with the title _pages_ in your `.gitlab-ci.yml` configuration file.
-Gitlab Pages hosts your static files at https://<group-or-user-name>.gitlab.io/<project-name>.
+Gitlab Pages hosts your static files at `https://<group-or-user-name>.gitlab.io/<project-name>`.
 You can use the `PATH_PREFIX` environment variable to configure your fiddly build.
 🎉
 
-```yml
+```yaml
 pages:
   image: node
   script:
