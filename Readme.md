@@ -71,6 +71,7 @@ It can contains the following options:
 | styles          | {}                                 | Styles to apply to the page. Object or path to css/scss file              |
 | additionalFiles | []                                 | Any other pages to create. It expects an array of paths of markdown files |
 | repo            | null                               | Link to point the github corner                                           |
+| pathPrefix      | /                                  | Host your fiddly files at e.g. example.org/fiddly
 
 <!-- markdownlint-enable -->
 
