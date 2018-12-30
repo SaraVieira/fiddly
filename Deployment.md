@@ -68,7 +68,7 @@ Gitlab Pages hosts your static files at https://<group-or-user-name>.gitlab.io/<
 You can use the `PATH_PREFIX` environment variable to configure your fiddly build.
 🎉
 
-```yml
+```yaml
 pages:
   image: node
   script:

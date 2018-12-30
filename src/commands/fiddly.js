@@ -1,7 +1,8 @@
-const showdown = require('showdown')
 const toCss = require('to-css')
 const CleanCSS = require('clean-css')
-const compressImages = require('compress-images')
+const imagemin = require('imagemin')
+const imageminJpegtran = require('imagemin-jpegtran')
+const imageminPngquant = require('imagemin-pngquant')
 const sass = require('node-sass')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
@@ -9,25 +10,23 @@ const fiddlyImports = require('../utils/fiddlyImports.js')
 const head = require('../utils/head.js')
 const header = require('../utils/header.js')
 const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
-
-const converter = new showdown.Converter({
-  tables: true,
-  tasklists: true,
-  openLinksInNewWindow: true,
-  backslashEscapesHTMLTags: true,
-  emoji: true,
-  omitExtraWLInCodeBlocks: true,
-  parseImgDimensions: true,
-  strikethrough: true,
-  smoothLivePreview: true,
-  literalMidWordUnderscores: true,
-  simplifiedAutoLink: true,
-  encodeEmails: true,
-  extensions: [
-    require('../utils/header-anchors'),
-    require('showdown-footnotes')
-  ]
+const md = require('markdown-it')({
+  html: true,
+  xhtmlOut: true,
+  linkify: true
 })
+const prism = require('markdown-it-prism')
+
+md.use(prism, {})
+md.use(require('markdown-it-inline-comments'))
+md.use(require('markdown-it-checkbox'))
+md.use(require('markdown-it-github-headings'))
+md.use(require('markdown-it-anchor'), {
+  level: 1
+})
+md.use(require('markdown-it-emoji'))
+md.linkify.tlds('.md', false)
+md.linkify.tlds('.MD', false)
 
 const defaultOptions = {
   dist: 'public',
@@ -133,7 +132,7 @@ module.exports = {
               options.darkTheme
             )
           : ''
-      const dark = options.darkTheme ? 'dark' : ''
+      const dark = options.darkTheme ? 'dark' : 'light'
 
       const images = (
         markdown.match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim) || []
@@ -141,23 +140,17 @@ module.exports = {
         .filter(i => !i.includes('https'))
         .map(image => (image.split('./')[1] || '').split(')')[0])
 
-      images.map(i => {
+      images.map(async i => {
         if (filesystem.exists(`${process.cwd()}/${i}`)) {
-          compressImages(
-            `${process.cwd()}/${i}`,
+          await imagemin(
+            [`${process.cwd()}/${i}`],
             `${process.cwd()}/${dist}/${i.substring(0, i.lastIndexOf('/'))}/`,
-            { compress_force: false, statistic: false, autoupdate: true },
-            false,
-            { jpg: { engine: 'mozjpeg', command: ['-quality', '60'] } },
-            { png: { engine: 'pngquant', command: ['--quality=20-50'] } },
-            { svg: { engine: 'svgo', command: '--multipass' } },
             {
-              gif: {
-                engine: 'gifsicle',
-                command: ['--colors', '64', '--use-col=web']
-              }
-            },
-            () => {}
+              plugins: [
+                imageminJpegtran(),
+                imageminPngquant({ quality: '65-80' })
+              ]
+            }
           )
         }
       })
@@ -189,7 +182,6 @@ module.exports = {
       var html = createHTML({
         title,
         css: fiddlyImports.css,
-        script: fiddlyImports.js,
         lang: 'en',
         head: head(
           description,
@@ -201,7 +193,7 @@ module.exports = {
           options,
           name,
           options.additionalFiles
-        )}${converter.makeHtml(markdown)}</div></div></div>`,
+        )}${md.render(markdown)}</div></div></div>`,
         favicon: options.favicon
       })
       try {

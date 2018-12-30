@@ -1,7 +1,7 @@
 {
   "name": "fiddly",
   "description": "Create beautiful and simple HTML pages from your Readme.md files",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "bin": {
     "fiddly": "bin/fiddly.js"
   },
@@ -43,13 +43,20 @@
   "license": "MIT",
   "dependencies": {
     "clean-css": "^4.2.1",
-    "compress-images": "^1.4.6",
     "create-html": "^4.1.0",
     "gluegun": "2.0.3",
+    "imagemin": "^6.1.0",
+    "imagemin-jpegtran": "^6.0.0",
+    "imagemin-pngquant": "^6.0.1",
+    "markdown-it": "^8.4.2",
+    "markdown-it-anchor": "^5.0.2",
+    "markdown-it-checkbox": "^1.1.0",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-github-headings": "^1.1.1",
+    "markdown-it-inline-comments": "^1.0.1",
+    "markdown-it-prism": "^2.0.1",
     "markdownlint": "^0.11.0",
     "node-sass": "^4.11.0",
-    "showdown": "^1.9.0",
-    "showdown-footnotes": "^2.1.2",
     "to-css": "^1.2.1"
   },
   "devDependencies": {
