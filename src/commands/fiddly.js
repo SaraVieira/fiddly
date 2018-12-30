@@ -6,10 +6,11 @@ const imageminPngquant = require('imagemin-pngquant')
 const sass = require('node-sass')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
-const fiddlyImports = require('../utils/fiddlyImports.js')
-const head = require('../utils/head.js')
-const header = require('../utils/header.js')
+const fiddlyImports = require('../utils/fiddlyImports')
+const head = require('../utils/head')
+const header = require('../utils/header')
 const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
+const getRemoteStyles = require('../utils/remoteStyles')
 const md = require('markdown-it')({
   html: true,
   xhtmlOut: true,
@@ -75,12 +76,13 @@ module.exports = {
       })
     }
 
+    const remoteStyles = await getRemoteStyles()
     const css = sass
       .renderSync({
-        data: filesystem
-          .read(`${__dirname}/css/style.scss`)
+        data: remoteStyles
+          .concat(filesystem.read(`${__dirname}/css/style.scss`))
           .concat(getAdditionalStyles()),
-        includePaths: [`${__dirname}/css`]
+        includePaths: [`${__dirname}/css`, `${process.cwd()}/node_modules`]
       })
       .css.toString()
 

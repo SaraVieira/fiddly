@@ -42,6 +42,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "clean-css": "^4.2.1",
     "create-html": "^4.1.0",
     "gluegun": "2.0.3",
@@ -57,6 +58,7 @@
     "markdown-it-prism": "^2.0.1",
     "markdownlint": "^0.11.0",
     "node-sass": "^4.11.0",
+    "normalize.css": "^8.0.1",
     "to-css": "^1.2.1"
   },
   "devDependencies": {
