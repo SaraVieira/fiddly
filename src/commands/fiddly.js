@@ -1,4 +1,3 @@
-const showdown = require('showdown')
 const toCss = require('to-css')
 const CleanCSS = require('clean-css')
 const imagemin = require('imagemin')
@@ -11,25 +10,23 @@ const fiddlyImports = require('../utils/fiddlyImports.js')
 const head = require('../utils/head.js')
 const header = require('../utils/header.js')
 const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
-
-const converter = new showdown.Converter({
-  tables: true,
-  tasklists: true,
-  openLinksInNewWindow: true,
-  backslashEscapesHTMLTags: true,
-  emoji: true,
-  omitExtraWLInCodeBlocks: true,
-  parseImgDimensions: true,
-  strikethrough: true,
-  smoothLivePreview: true,
-  literalMidWordUnderscores: true,
-  simplifiedAutoLink: true,
-  encodeEmails: true,
-  extensions: [
-    require('../utils/header-anchors'),
-    require('showdown-footnotes')
-  ]
+const md = require('markdown-it')({
+  html: true,
+  xhtmlOut: true,
+  linkify: true
 })
+const prism = require('markdown-it-prism')
+
+md.use(prism, {})
+md.use(require('markdown-it-inline-comments'))
+md.use(require('markdown-it-checkbox'))
+md.use(require('markdown-it-github-headings'))
+md.use(require('markdown-it-anchor'), {
+  level: 1
+})
+md.use(require('markdown-it-emoji'))
+md.linkify.tlds('.md', false)
+md.linkify.tlds('.MD', false)
 
 const defaultOptions = {
   dist: 'public',
@@ -185,7 +182,6 @@ module.exports = {
       var html = createHTML({
         title,
         css: fiddlyImports.css,
-        script: fiddlyImports.js,
         lang: 'en',
         head: head(
           description,
@@ -197,7 +193,7 @@ module.exports = {
           options,
           name,
           options.additionalFiles
-        )}${converter.makeHtml(markdown)}</div></div></div>`,
+        )}${md.render(markdown)}</div></div></div>`,
         favicon: options.favicon
       })
       try {

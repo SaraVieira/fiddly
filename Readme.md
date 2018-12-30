@@ -110,27 +110,12 @@ body {
 
 ## HTML in Markdown
 
-If you have any HTML in your markdown that has children that are markdown.
-For example a div like this:
+If you have any HTML in your markdown that has children that are markdown these _children will not be parsed_.
+This is not true for anything without children like images or `<br>` tags. These will be parsed.
 
-```markdown
-<div align="center">
-  [![Hello](./image)](https://link.url)
-</div>
-```
+You can see the issue regarding markdown-it [here](https://github.com/markdown-it/markdown-it/issues/506)
 
-In order for fiddly to render the inner contents as markdown you will need to add
-`data-markdown="1"` to the surrounding element like so:
-
-```markdown
-<div align="center" data-markdown="1">
-  [![Hello](./image)](https://link.url)
-</div>
-```
-
-This is not needed for anything without children like images or `<br>` tags.
-
-You can see the issue regarding showdown [here](https://github.com/showdownjs/showdown/issues/178)
+They don't seem to want to support it 🤷🏻‍
 
 ## Images
 
@@ -170,6 +155,7 @@ You can run this by using the `lint` command
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/1051509?v=4" width="100px;"/><br /><sub><b>Sara Vieira</b></sub>](http://iamsaravieira.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=SaraVieira "Code") [🎨](#design-SaraVieira "Design") [🤔](#ideas-SaraVieira "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/4772980?v=4" width="100px;"/><br /><sub><b>Bruno Scheufler</b></sub>](https://brunoscheufler.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=BrunoScheufler "Code") | [<img src="https://avatars0.githubusercontent.com/u/1863771?v=4" width="100px;"/><br /><sub><b>Siddharth Kshetrapal</b></sub>](https://sid.studio)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=siddharthkp "Code") | [<img src="https://avatars3.githubusercontent.com/u/1479215?v=4" width="100px;"/><br /><sub><b>Jamon Holmgren</b></sub>](https://jamonholmgren.com)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=jamonholmgren "Code") | [<img src="https://avatars0.githubusercontent.com/u/1695613?v=4" width="100px;"/><br /><sub><b>Timothy</b></sub>](http://timothy.is)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=timothyis "Code") | [<img src="https://avatars2.githubusercontent.com/u/13808724?v=4" width="100px;"/><br /><sub><b>Andrew Cherniavskii</b></sub>](https://github.com/cherniavskii)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=cherniavskii "Code") | [<img src="https://avatars2.githubusercontent.com/u/16899513?v=4" width="100px;"/><br /><sub><b>timkolberger</b></sub>](https://github.com/TimKolberger)<br />[💻](https://github.com/SaraVieira/fiddly/commits?author=TimKolberger "Code") |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- ALL-CONTRIBUTORS-LIST: START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->

@@ -48,10 +48,15 @@
     "imagemin": "^6.1.0",
     "imagemin-jpegtran": "^6.0.0",
     "imagemin-pngquant": "^6.0.1",
+    "markdown-it": "^8.4.2",
+    "markdown-it-anchor": "^5.0.2",
+    "markdown-it-checkbox": "^1.1.0",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-github-headings": "^1.1.1",
+    "markdown-it-inline-comments": "^1.0.1",
+    "markdown-it-prism": "^2.0.1",
     "markdownlint": "^0.11.0",
     "node-sass": "^4.11.0",
-    "showdown": "^1.9.0",
-    "showdown-footnotes": "^2.1.2",
     "to-css": "^1.2.1"
   },
   "devDependencies": {
