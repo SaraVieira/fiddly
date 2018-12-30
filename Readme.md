@@ -93,7 +93,7 @@ default styles applied. Like so:
 
 Another option is to give the path to a local css or scss file.
 In this case you need to override any specificity issues.
-You cab by using the `#fiddly` id.
+You can by using the `#fiddly` id.
 Example:
 
 ```css
