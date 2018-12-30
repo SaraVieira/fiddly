@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "alias": "fiddly",
+  "public": true,
   "builds": [
     { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "public" } }
   ]
