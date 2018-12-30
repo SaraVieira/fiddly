@@ -62,8 +62,8 @@ It can contain the following options:
 | file            | Readme.md, readme.md, or README.md | Your Readme.md name                                                       |
 | name            | name in package.json               | The project name that is in the title and the header                      |
 | logo            | ''                                 | The project logo that is in the header                                    |
-| description     | description in package.json        | The project description for metaTags                                      |
-| homepage        | null                               | The project homepage for metaTags                                         |
+| description     | description in package.json        | The project description for meta tags                                      |
+| homepage        | null                               | The project homepage for meta tags                                         |
 | noHeader        | false                              | Show no header and just the markdown content                              |
 | darkTheme       | false                              | Dark theme ofc 🎉                                                         |
 | favicon         | ''                                 | Favicon url or local path                                                 |
