@@ -1,16 +1,17 @@
-const markdownlint = require('markdownlint')
 const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
+const fs = require('fs')
+const { run } = require('./fiddly')
 
 module.exports = {
-  name: 'lint',
-  alias: 'l',
-  description: 'Lint your linked markdown files',
+  name: 'watch',
+  alias: 'w',
+  description: 'Watch your markdown files for changes and build automatically',
   run: async toolbox => {
     const {
-      print: { success, error },
+      print: { success },
       filesystem
     } = toolbox
-
+    success(`Watching your files`)
     const packageJSON =
       filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
@@ -25,18 +26,16 @@ module.exports = {
     })
 
     if (options.additionalFiles) {
-      files.push(options.additionalFiles)
+      files.push(...options.additionalFiles)
     }
 
-    markdownlint({ files }, (err, result) => {
-      if (!err) {
-        if (result.toString()) {
-          error('We found some errors 😢')
-          error(result.toString())
-        } else {
-          success('All clear ✅')
+    files.map(file => {
+      fs.watch(file, (e, filename) => {
+        if (filename && e === 'change') {
+          success(`${filename} changed. Building`)
+          run(toolbox)
         }
-      }
+      })
     })
   }
 }

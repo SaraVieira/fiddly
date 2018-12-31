@@ -12,7 +12,7 @@
 
 Head over to https://netlify.com and click on new site from git:
 
-<div align="center"><b>![New site from git](./media/netifly1.png)</b></div>
+![New site from git](./media/netifly1.png)
 
 It will ask you to choose a provider and choose the one you are using. After that it will ask you for what repo it is and after you selected it just select these options on the next screen:
 
@@ -59,7 +59,15 @@ After that pick and domain and done 🎉
 
 ## Github Pages
 
-// Todo
+For Github pages there is a command:
+
+```bash
+fiddly deploy
+```
+
+This command will build your project if no version exists and deploy it to `gh-pages` branch on github.
+It uses [gh-pages](https://github.com/tschaub/gh-pages#options) under the hood so any options you pass there you can also pass in your `deployment` option in `.fiddly.config.json`.
+✨
 
 ## Gitlab Pages
 

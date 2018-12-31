@@ -57,21 +57,22 @@ It can contain the following options:
 
 <!-- markdownlint-disable -->
 
-| Option          | Default                            | Description                                                               |
-| --------------- | ---------------------------------- | ------------------------------------------------------------------------- |
-| file            | Readme.md, readme.md, or README.md | Your Readme.md name                                                       |
-| name            | name in package.json               | The project name that is in the title and the header                      |
-| logo            | ''                                 | The project logo that is in the header                                    |
-| description     | description in package.json        | The project description for meta tags                                      |
-| homepage        | null                               | The project homepage for meta tags                                         |
-| noHeader        | false                              | Show no header and just the markdown content                              |
-| darkTheme       | false                              | Dark theme ofc 🎉                                                         |
-| favicon         | ''                                 | Favicon url or local path                                                 |
-| dist            | public                             | To what folder to render your HTML                                        |
-| styles          | {}                                 | Styles to apply to the page. Object or path to css/scss file              |
-| additionalFiles | []                                 | Any other pages to create. It expects an array of paths of markdown files |
-| repo            | null                               | Link to point the github corner                                           |
-| pathPrefix      | Environment var PATH_PREFIX or '/' | Host your fiddly files at e.g. /my-fiddly-project                         |
+| Option          | Default                            | Description                                                                                                  |
+| --------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| file            | Readme.md, readme.md, or README.md | Your Readme.md name                                                                                          |
+| name            | name in package.json               | The project name that is in the title and the header                                                         |
+| logo            | ''                                 | The project logo that is in the header                                                                       |
+| description     | description in package.json        | The project description for meta tags                                                                        |
+| homepage        | null                               | The project homepage for meta tags                                                                           |
+| noHeader        | false                              | Show no header and just the markdown content                                                                 |
+| darkTheme       | false                              | Dark theme ofc 🎉                                                                                            |
+| favicon         | ''                                 | Favicon url or local path                                                                                    |
+| dist            | public                             | To what folder to render your HTML                                                                           |
+| styles          | {}                                 | Styles to apply to the page. Object or path to css/scss file                                                 |
+| additionalFiles | []                                 | Any other pages to create. It expects an array of paths of markdown files                                    |
+| repo            | null                               | Link to point the github corner                                                                              |
+| pathPrefix      | Environment var PATH_PREFIX or '/' | Host your fiddly files at e.g. /my-fiddly-project                                                            |
+| deployment      | {}                                 | Deployment options for github pages. Accepts all options [here](https://github.com/tschaub/gh-pages#options) |
 
 <!-- markdownlint-enable -->
 

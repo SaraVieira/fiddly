@@ -8,7 +8,6 @@ async function run(argv) {
   const cli = build()
     .brand('fiddly')
     .src(__dirname)
-    .plugins('./node_modules', { matching: 'fiddly-*', hidden: true })
     .help() // provides default for help, h, --help, -h
     .version() // provides default for version, v, --version, -v
     .create()

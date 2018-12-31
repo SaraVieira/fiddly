@@ -70,6 +70,7 @@ const defaultOptions = {
 
 module.exports = {
   name: 'fiddly',
+  description: 'Build your static website from markdown',
   run: async toolbox => {
     const {
       print: { info, success, error },
@@ -161,7 +162,7 @@ module.exports = {
 
       const description = options.description || packageJSON.description
       const name = options.name || packageJSON.name
-      const repo = options.repo || packageJSON.repository
+      const repo = options.repo || packageJSON.repository.url
       const githubCorner = repo ? corner(repo, options.darkTheme) : ''
       const dark = options.darkTheme ? 'dark' : 'light'
 

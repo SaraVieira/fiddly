@@ -45,6 +45,7 @@
     "axios": "^0.18.0",
     "clean-css": "^4.2.1",
     "create-html": "^4.1.0",
+    "gh-pages": "^2.0.1",
     "gluegun": "2.0.3",
     "imagemin": "^6.1.0",
     "imagemin-jpegtran": "^6.0.0",
