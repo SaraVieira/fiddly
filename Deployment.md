@@ -12,7 +12,7 @@
 
 Head over to https://netlify.com and click on new site from git:
 
-![New site from git](./media/netifly1.png)
+<div align="center"><b>![New site from git](./media/netifly1.png)</b></div>
 
 It will ask you to choose a provider and choose the one you are using. After that it will ask you for what repo it is and after you selected it just select these options on the next screen:
 

@@ -54,7 +54,6 @@ pre {
   background: #011627;
 }
 
-/* Inline code */
 :not(pre) > code {
   padding: 0.1em;
   border-radius: 0.3em;
@@ -68,46 +67,38 @@ pre {
   font-style: italic;
 }
 
-// Done
 .token.punctuation {
   color: rgb(199, 146, 234);
 }
 
-// Done
 .namespace {
   color: rgb(178, 204, 214);
 }
 
-// Done
 .token.deleted {
   color: rgba(239, 83, 80, 0.56);
   font-style: italic;
 }
 
-// Done
 .token.symbol,
 .token.property {
   color: rgb(128, 203, 196);
 }
 
-// Done
 .token.tag,
 .token.operator,
 .token.keyword {
   color: rgb(127, 219, 202);
 }
 
-// Done
 .token.boolean {
   color: rgb(255, 88, 116);
 }
 
-// Done
 .token.number {
   color: rgb(247, 140, 108);
 }
 
-// Done
 .token.constant,
 .token.function,
 .token.builtin,
@@ -115,21 +106,18 @@ pre {
   color: rgb(130, 170, 255);
 }
 
-// Done
 .token.selector,
 .token.doctype {
   color: rgb(199, 146, 234);
   font-style: italic;
 }
 
-// Done
 .token.attr-name,
 .token.inserted {
   color: rgb(173, 219, 103);
   font-style: italic;
 }
 
-// Done
 .token.string,
 .token.url,
 .token.entity,

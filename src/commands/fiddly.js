@@ -11,6 +11,8 @@ const head = require('../utils/head')
 const header = require('../utils/header')
 const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
 const getRemoteStyles = require('../utils/remoteStyles')
+const snarkdown = require('snarkdown')
+const iterator = require('markdown-it-for-inline')
 const md = require('markdown-it')({
   html: true,
   xhtmlOut: true,
@@ -28,6 +30,27 @@ md.use(require('markdown-it-anchor'), {
 md.use(require('markdown-it-emoji'))
 md.linkify.tlds('.md', false)
 md.linkify.tlds('.MD', false)
+md.use(iterator, 'url_new_win', 'link_open', function(tokens, idx) {
+  const aIndex = tokens[idx].attrIndex('target')
+
+  if (aIndex < 0) {
+    tokens[idx].attrPush(['target', '_blank'])
+  } else {
+    tokens[idx].attrs[aIndex][1] = '_blank'
+  }
+})
+const defaultRender =
+  md.renderer.rules.html_block ||
+  function(tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options)
+  }
+
+md.renderer.rules.html_block = function(tokens, idx, options, env, self) {
+  const htmlBlock = tokens[idx]
+  tokens[idx].content = snarkdown(htmlBlock.content)
+
+  return defaultRender(tokens, idx, options, env, self)
+}
 
 const defaultOptions = {
   dist: 'public',
@@ -61,14 +84,20 @@ module.exports = {
       ...(packageJSON.fiddly || {}),
       ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {})
     }
+
     const dist = options.dist
+    const distFolder = `${process.cwd()}/${dist}`
 
     // CSS
+
+    // Get CSS defined by the user
     const getAdditionalStyles = () => {
+      // if string read the file path
       if (typeof options.styles === 'string') {
         return filesystem.read(`${process.cwd()}/${options.styles}`)
       }
 
+      // If not read object and turn into css
       return toCss(options.styles, {
         selector: s => `#fiddly ${s}`,
         property: p =>
@@ -76,20 +105,24 @@ module.exports = {
       })
     }
 
+    // Get normalize and google fonts
     const remoteStyles = await getRemoteStyles()
+
+    // Transform sass to css
     const css = sass
       .renderSync({
         data: remoteStyles
           .concat(filesystem.read(`${__dirname}/css/style.scss`))
           .concat(getAdditionalStyles()),
-        includePaths: [`${__dirname}/css`, `${process.cwd()}/node_modules`]
+        includePaths: [`${__dirname}/css`]
       })
       .css.toString()
 
-    await filesystem.write(
-      `${process.cwd()}/${dist}/style.css`,
-      new CleanCSS().minify(css).styles
-    )
+    // minify css
+    const minifiedCSS = new CleanCSS().minify(css).styles
+
+    // write the css
+    await filesystem.write(`$${distFolder}/style.css`, minifiedCSS)
 
     // HTML
 
@@ -116,6 +149,7 @@ module.exports = {
       options.additionalFiles.unshift(options.file)
     }
 
+    // Map through all files
     options.additionalFiles.map(async file => {
       // Get markdown contents of given file
       const markdown = filesystem.read(`${process.cwd()}/${file}`)
@@ -127,26 +161,23 @@ module.exports = {
 
       const description = options.description || packageJSON.description
       const name = options.name || packageJSON.name
-      const githubCorner =
-        options.repo || packageJSON.repository
-          ? corner(
-              options.repo || packageJSON.repository.url,
-              options.darkTheme
-            )
-          : ''
+      const repo = options.repo || packageJSON.repository
+      const githubCorner = repo ? corner(repo, options.darkTheme) : ''
       const dark = options.darkTheme ? 'dark' : 'light'
 
+      // Get all images that are not from the internet ™️
       const images = (
         markdown.match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim) || []
       )
         .filter(i => !i.includes('https'))
         .map(image => (image.split('./')[1] || '').split(')')[0])
 
+      // Map through them and if that file exists minify it and copy it
       images.map(async i => {
         if (filesystem.exists(`${process.cwd()}/${i}`)) {
           await imagemin(
             [`${process.cwd()}/${i}`],
-            `${process.cwd()}/${dist}/${i.substring(0, i.lastIndexOf('/'))}/`,
+            `${distFolder}/${i.substring(0, i.lastIndexOf('/'))}/`,
             {
               plugins: [
                 imageminJpegtran(),
@@ -157,18 +188,20 @@ module.exports = {
         }
       })
 
+      // Copy favicon
       if (!options.favicon.includes('http') && options.favicon !== '') {
         filesystem.copy(
           `${process.cwd()}/${options.favicon}`,
-          `${process.cwd()}/${dist}/${options.favicon}`,
+          `${distFolder}/${options.favicon}`,
           { overwrite: true }
         )
       }
 
+      // Copy logo
       if (!options.logo.includes('http') && options.logo !== '') {
         filesystem.copy(
           `${process.cwd()}/${options.logo}`,
-          `${process.cwd()}/${dist}/${options.logo}`,
+          `${distFolder}/${options.logo}`,
           { overwrite: true }
         )
       }
@@ -200,7 +233,7 @@ module.exports = {
       })
       try {
         await filesystem.write(
-          `${process.cwd()}/${dist}/${fileName.toLowerCase()}.html`,
+          `${distFolder}/${fileName.toLowerCase()}.html`,
           html
         )
       } catch (e) {

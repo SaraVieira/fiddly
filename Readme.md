@@ -108,15 +108,6 @@ body {
 }
 ```
 
-## HTML in Markdown
-
-If you have any HTML in your markdown that has children that are markdown these _children will not be parsed_.
-This is not true for anything without children like images or `<br>` tags. These will be parsed.
-
-You can see the issue regarding markdown-it [here](https://github.com/markdown-it/markdown-it/issues/506)
-
-They don't seem to want to support it 🤷🏻‍
-
 ## Images
 
 Any images linked in your markdown that are local will be minified and copied to your dist folder.
