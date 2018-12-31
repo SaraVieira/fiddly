@@ -122,7 +122,7 @@ module.exports = {
     const minifiedCSS = new CleanCSS().minify(css).styles
 
     // write the css
-    await filesystem.write(`$${distFolder}/style.css`, minifiedCSS)
+    await filesystem.write(`${distFolder}/style.css`, minifiedCSS)
 
     // HTML
 
