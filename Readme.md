@@ -130,10 +130,18 @@ You can run this by using the `lint` command
 "lint:md" : "fiddly lint"
 ```
 
-## TODO
+## Deploy
 
-- [ ] Deploy using magic to GH Pages too
-- [ ] Allow option to change prism theme
+Fiddly also exports a command to let you deploy your new site to Github pages
+
+You can run this by using the `deploy` command
+
+```json
+"lint:md" : "fiddly deploy"
+```
+
+Options for this can be passed in a `deployment` key in your config file.
+All options can be found here: [https://github.com/tschaub/gh-pages#options](https://github.com/tschaub/gh-pages#options)
 
 ## Acknowledgements
 

@@ -162,7 +162,7 @@ module.exports = {
 
       const description = options.description || packageJSON.description
       const name = options.name || packageJSON.name
-      const repo = options.repo || packageJSON.repository.url
+      const repo = options.repo || (packageJSON.repository || {}).url
       const githubCorner = repo ? corner(repo, options.darkTheme) : ''
       const dark = options.darkTheme ? 'dark' : 'light'
 
