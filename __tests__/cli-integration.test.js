@@ -150,7 +150,7 @@ test('Prefixes logo and additional file paths', async () => {
   expect(filesystem.exists('public/index.html')).toBeTruthy()
   const html = filesystem.read('public/index.html')
 
-  expect(html).toContain(`href="/fiddly-rocks/one"`)
+  expect(html).toContain(`href="/fiddly-rocks/one.html"`)
   expect(html).toContain(`src="/fiddly-rocks/logo.png"`)
 
   filesystem.remove('public')
