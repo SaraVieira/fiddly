@@ -14,7 +14,7 @@ module.exports = (options, name, pages) => {
   const absolutePath = path => `${options.pathPrefix}${path}`
 
   const fileHref = file =>
-    fileName(file) === 'Home' ? '' : fileName(file).toLowerCase()
+    fileName(file) === 'Home' ? '' : `${fileName(file)}.html`
 
   return options && !options.noHeader
     ? `<header>${name ? `<h1>${name}</h1>` : ''}${
