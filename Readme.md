@@ -137,7 +137,7 @@ Fiddly also exports a command to let you deploy your new site to Github pages
 You can run this by using the `deploy` command
 
 ```json
-"lint:md" : "fiddly deploy"
+"deploy" : "fiddly deploy"
 ```
 
 Options for this can be passed in a `deployment` key in your config file.
