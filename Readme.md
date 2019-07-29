@@ -114,9 +114,9 @@ body {
 Any images linked in your markdown that are local will be minified and copied to your dist folder.
 If some image is not found it will be ignored.
 
-## Github Corner
+## GitHub Corner
 
-The Github corner comes from either the `repo` option in your `.fiddly.config.json`
+The GitHub corner comes from either the `repo` option in your `.fiddly.config.json`
 or from the repository url in your `package.json`.
 If none is present it will not be shown.
 
@@ -132,7 +132,7 @@ You can run this by using the `lint` command
 
 ## Deploy
 
-Fiddly also exports a command to let you deploy your new site to Github pages
+Fiddly also exports a command to let you deploy your new site to GitHub pages
 
 You can run this by using the `deploy` command
 
