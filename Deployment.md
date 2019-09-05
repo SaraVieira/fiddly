@@ -5,8 +5,8 @@
 - [Netlify](#netlify)
 - [Now](#now)
 - [Surge](#surge)
-- [Github Pages](#githubpages)
-- [Gitlab Pages](#gitlabpages)
+- [GitHub Pages](#githubpages)
+- [GitLab Pages](#gitlabpages)
 
 ## Netlify
 
@@ -57,9 +57,9 @@ After that pick and domain and done 🎉
 
 ![Surge](./media/surge.png)
 
-## Github Pages
+## GitHub Pages
 
-For Github pages there is a command:
+For GitHub pages there is a command:
 
 ```bash
 fiddly deploy
