@@ -61,6 +61,7 @@ const defaultOptions = {
   description: null,
   styles: {},
   logo: '',
+  shareCard: '',
   favicon: '',
   additionalFiles: [],
   homepage: null,
@@ -203,6 +204,15 @@ module.exports = {
         filesystem.copy(
           `${process.cwd()}/${options.logo}`,
           `${distFolder}/${options.logo}`,
+          { overwrite: true }
+        )
+      }
+
+      // Copy shareCard
+      if (!options.shareCard.includes('http') && options.shareCard !== '') {
+        filesystem.copy(
+          `${process.cwd()}/${options.shareCard}`,
+          `${distFolder}/${options.shareCard}`,
           { overwrite: true }
         )
       }
