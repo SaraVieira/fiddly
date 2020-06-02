@@ -6,10 +6,10 @@ module.exports = {
   name: 'watch',
   alias: 'w',
   description: 'Watch your markdown files for changes and build automatically',
-  run: async toolbox => {
+  run: async (toolbox) => {
     const {
       print: { success },
-      filesystem
+      filesystem,
     } = toolbox
     success(`Watching your files`)
     const packageJSON =
@@ -17,11 +17,12 @@ module.exports = {
 
     const options = {
       ...(packageJSON.fiddly || {}),
-      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {})
+      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
+        {}),
     }
     const files = []
 
-    DEFAULT_FILENAMES.find(filename => {
+    DEFAULT_FILENAMES.find((filename) => {
       return filesystem.exists(filename) ? files.push(filename) : null
     })
 
@@ -29,7 +30,7 @@ module.exports = {
       files.push(...options.additionalFiles)
     }
 
-    files.map(file => {
+    files.map((file) => {
       fs.watch(file, (e, filename) => {
         if (filename && e === 'change') {
           success(`${filename} changed. Building`)
@@ -37,5 +38,5 @@ module.exports = {
         }
       })
     })
-  }
+  },
 }

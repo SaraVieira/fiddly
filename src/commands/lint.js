@@ -5,10 +5,10 @@ module.exports = {
   name: 'lint',
   alias: 'l',
   description: 'Lint your linked markdown files',
-  run: async toolbox => {
+  run: async (toolbox) => {
     const {
       print: { success, error },
-      filesystem
+      filesystem,
     } = toolbox
 
     const packageJSON =
@@ -16,11 +16,12 @@ module.exports = {
 
     const options = {
       ...(packageJSON.fiddly || {}),
-      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {})
+      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
+        {}),
     }
     const files = []
 
-    DEFAULT_FILENAMES.find(filename => {
+    DEFAULT_FILENAMES.find((filename) => {
       return filesystem.exists(filename) ? files.push(filename) : null
     })
 
@@ -38,5 +39,5 @@ module.exports = {
         }
       }
     })
-  }
+  },
 }
