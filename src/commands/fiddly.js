@@ -16,7 +16,7 @@ const iterator = require('markdown-it-for-inline')
 const md = require('markdown-it')({
   html: true,
   xhtmlOut: true,
-  linkify: true
+  linkify: true,
 })
 const prism = require('markdown-it-prism')
 
@@ -25,12 +25,12 @@ md.use(require('markdown-it-inline-comments'))
 md.use(require('markdown-it-checkbox'))
 md.use(require('markdown-it-github-headings'))
 md.use(require('markdown-it-anchor'), {
-  level: 1
+  level: 1,
 })
 md.use(require('markdown-it-emoji'))
 md.linkify.tlds('.md', false)
 md.linkify.tlds('.MD', false)
-md.use(iterator, 'url_new_win', 'link_open', function(tokens, idx) {
+md.use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {
   const aIndex = tokens[idx].attrIndex('target')
 
   if (aIndex < 0) {
@@ -41,11 +41,11 @@ md.use(iterator, 'url_new_win', 'link_open', function(tokens, idx) {
 })
 const defaultRender =
   md.renderer.rules.html_block ||
-  function(tokens, idx, options, env, self) {
+  function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options)
   }
 
-md.renderer.rules.html_block = function(tokens, idx, options, env, self) {
+md.renderer.rules.html_block = function (tokens, idx, options, env, self) {
   const htmlBlock = tokens[idx]
   tokens[idx].content = snarkdown(htmlBlock.content)
 
@@ -65,16 +65,16 @@ const defaultOptions = {
   additionalFiles: [],
   homepage: null,
   repo: null,
-  pathPrefix: `${process.env.PATH_PREFIX || ''}`
+  pathPrefix: `${process.env.PATH_PREFIX || ''}`,
 }
 
 module.exports = {
   name: 'fiddly',
   description: 'Build your static website from markdown',
-  run: async toolbox => {
+  run: async (toolbox) => {
     const {
       print: { info, success, error },
-      filesystem
+      filesystem,
     } = toolbox
 
     const packageJSON =
@@ -83,7 +83,8 @@ module.exports = {
     const options = {
       ...defaultOptions,
       ...(packageJSON.fiddly || {}),
-      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {})
+      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
+        {}),
     }
 
     const dist = options.dist
@@ -100,9 +101,9 @@ module.exports = {
 
       // If not read object and turn into css
       return toCss(options.styles, {
-        selector: s => `#fiddly ${s}`,
-        property: p =>
-          p.replace(/([A-Z])/g, matches => `-${matches[0].toLowerCase()}`)
+        selector: (s) => `#fiddly ${s}`,
+        property: (p) =>
+          p.replace(/([A-Z])/g, (matches) => `-${matches[0].toLowerCase()}`),
       })
     }
 
@@ -115,7 +116,7 @@ module.exports = {
         data: remoteStyles
           .concat(filesystem.read(`${__dirname}/css/style.scss`))
           .concat(getAdditionalStyles()),
-        includePaths: [`${__dirname}/css`]
+        includePaths: [`${__dirname}/css`],
       })
       .css.toString()
 
@@ -133,7 +134,7 @@ module.exports = {
     // Check for `options.file`, if null, check if a default file exists, or error
     if (options.file === null) {
       options.additionalFiles.unshift(
-        DEFAULT_FILENAMES.find(filename => {
+        DEFAULT_FILENAMES.find((filename) => {
           return filesystem.exists(filename) ? filename : null
         })
       )
@@ -151,7 +152,7 @@ module.exports = {
     }
 
     // Map through all files
-    options.additionalFiles.map(async file => {
+    options.additionalFiles.map(async (file) => {
       // Get markdown contents of given file
       const markdown = filesystem.read(`${process.cwd()}/${file}`)
 
@@ -170,22 +171,19 @@ module.exports = {
       const images = (
         markdown.match(/(?:!\[(.*?)\]\((?!http)(.*?)\))/gim) || []
       )
-        .filter(i => !i.includes('https'))
-        .map(image => (image.split('./')[1] || '').split(')')[0])
+        .filter((i) => !i.includes('https'))
+        .map((image) => (image.split('./')[1] || '').split(')')[0])
 
       // Map through them and if that file exists minify it and copy it
-      images.map(async i => {
+      images.map(async (i) => {
         if (filesystem.exists(`${process.cwd()}/${i}`)) {
-          await imagemin(
-            [`${process.cwd()}/${i}`],
-            `${distFolder}/${i.substring(0, i.lastIndexOf('/'))}/`,
-            {
-              plugins: [
-                imageminJpegtran(),
-                imageminPngquant({ quality: '65-80' })
-              ]
-            }
-          )
+          await imagemin([`${process.cwd()}/${i}`], {
+            destination: `${distFolder}/${i.substring(0, i.lastIndexOf('/'))}/`,
+            plugins: [
+              imageminJpegtran(),
+              imageminPngquant({ quality: [0.65, 0.8] }),
+            ],
+          })
         }
       })
 
@@ -230,7 +228,7 @@ module.exports = {
           name,
           options.additionalFiles
         )}${md.render(markdown)}</div></div></div>`,
-        favicon: options.favicon
+        favicon: options.favicon,
       })
       try {
         await filesystem.write(
@@ -250,7 +248,7 @@ module.exports = {
       🎉   You can deploy the ${dist} folder to a static server    🎉
 
       `)
-  }
+  },
 }
 
 exports.DEFAULT_FILENAMES = DEFAULT_FILENAMES

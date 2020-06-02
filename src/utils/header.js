@@ -1,19 +1,19 @@
 const DEFAULT_FILENAMES = require('./DEFAULT_FILENAMES')
 
-const capitalize = name =>
+const capitalize = (name) =>
   name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
 
 module.exports = (options, name, pages) => {
-  const fileName = file => {
+  const fileName = (file) => {
     const isIndex = DEFAULT_FILENAMES.includes(file)
     return isIndex
       ? 'Home'
       : (file.split('/')[file.split('/').length - 1] || '').split('.md')[0]
   }
 
-  const absolutePath = path => `${options.pathPrefix}${path}`
+  const absolutePath = (path) => `${options.pathPrefix}${path}`
 
-  const fileHref = file =>
+  const fileHref = (file) =>
     fileName(file) === 'Home' ? '' : `${fileName(file)}.html`
 
   return options && !options.noHeader
@@ -28,7 +28,7 @@ module.exports = (options, name, pages) => {
         pages.length > 1
           ? `<nav><ul>${pages
               .map(
-                page =>
+                (page) =>
                   `<li><a href="${absolutePath(fileHref(page))}">${capitalize(
                     fileName(page)
                   )}</a></li>`

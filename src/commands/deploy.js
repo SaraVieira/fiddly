@@ -5,10 +5,10 @@ module.exports = {
   name: 'deploy',
   alias: 'd',
   description: 'Deploy your static site to Github pages',
-  run: async toolbox => {
+  run: async (toolbox) => {
     const {
       print: { spin, warning },
-      filesystem
+      filesystem,
     } = toolbox
 
     const packageJSON =
@@ -17,7 +17,8 @@ module.exports = {
     const options = {
       ...{ dist: 'public' },
       ...(packageJSON.fiddly || {}),
-      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') || {})
+      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
+        {}),
     }
 
     const dist = options.dist
@@ -30,11 +31,11 @@ module.exports = {
     }
 
     const spinner = spin('Deploying your site')
-    ghpages.publish(distFolder, deploymentOptions, err => {
+    ghpages.publish(distFolder, deploymentOptions, (err) => {
       if (err) {
         return spinner.fail('There was an error publishing your site 😢')
       }
       return spinner.succeed(`Website Published 🎉`)
     })
-  }
+  },
 }
