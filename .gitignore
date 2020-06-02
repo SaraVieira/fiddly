@@ -8,3 +8,5 @@ public
 __tests__/testoutput
 package.lock
 .eslintcache
+
+.vercel
