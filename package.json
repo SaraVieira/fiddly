@@ -40,7 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "clean-css": "^4.2.3",
     "create-html": "^4.1.0",
     "gh-pages": "^3.0.0",
