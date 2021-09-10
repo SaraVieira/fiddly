@@ -1,9 +1,9 @@
 const { system, filesystem } = require('gluegun')
 
 const src = filesystem.path(__dirname, '..')
-const success = `Generated your static files at public/`
+const success = 'Generated your static files at public/'
 
-const cli = async cmd =>
+const cli = async (cmd) =>
   system.run('node ' + filesystem.path(src, 'bin', 'fiddly') + ` ${cmd}`)
 
 test('generates html', async () => {
@@ -34,7 +34,7 @@ test('generates dark', async () => {
   expect(output).toContain(success)
   const html = filesystem.read('public/index.html')
 
-  expect(html).toContain(`<div class="body dark">`)
+  expect(html).toContain('<div class="body dark">')
 
   filesystem.remove('public')
   process.chdir(prevDir)
@@ -50,7 +50,7 @@ test('reads config from package.json', async () => {
   expect(output).toContain(success.replace('public', 'testoutput'))
   const css = filesystem.read('testoutput/style.css')
 
-  expect(css).toContain(`font-size:18em`)
+  expect(css).toContain('font-size:18em')
 
   filesystem.remove('testoutput')
   process.chdir(prevDir)
@@ -150,8 +150,8 @@ test('Prefixes logo and additional file paths', async () => {
   expect(filesystem.exists('public/index.html')).toBeTruthy()
   const html = filesystem.read('public/index.html')
 
-  expect(html).toContain(`href="/fiddly-rocks/one.html"`)
-  expect(html).toContain(`src="/fiddly-rocks/logo.png"`)
+  expect(html).toContain('href="/fiddly-rocks/one.html"')
+  expect(html).toContain('src="/fiddly-rocks/logo.png"')
 
   filesystem.remove('public')
   process.chdir(prevDir)

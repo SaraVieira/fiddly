@@ -1,6 +1,5 @@
 const toCss = require('to-css')
 const CleanCSS = require('clean-css')
-const imagemin = require('imagemin')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
 const sass = require('node-sass')
@@ -144,7 +143,7 @@ module.exports = {
         options.additionalFiles[options.additionalFiles.length - 1] === null
       ) {
         return error(
-          `No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.`
+          'No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.'
         )
       }
     } else {
@@ -177,6 +176,7 @@ module.exports = {
 
       // Map through them and if that file exists minify it and copy it
       images.map(async (i) => {
+        const imagemin = (await import('imagemin')).default
         if (filesystem.exists(`${process.cwd()}/${i}`)) {
           await imagemin([`${process.cwd()}/${i}`], {
             destination: `${distFolder}/${i.substring(0, i.lastIndexOf('/'))}/`,
@@ -223,7 +223,7 @@ module.exports = {
 
       const title = name ? name.charAt(0).toUpperCase() + name.slice(1) : ''
 
-      var html = createHTML({
+      const html = createHTML({
         title,
         css: fiddlyImports.css,
         lang: 'en',

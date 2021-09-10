@@ -8,7 +8,7 @@ module.exports = (description, name, options = {}, homepage) => `
       <meta name="image" content="${options.favicon}">
       <meta itemprop="image" content="${options.favicon}">
       `
-      : ``
+      : ''
   }
   <meta property="og:type" content="website">
   ${
@@ -18,7 +18,7 @@ module.exports = (description, name, options = {}, homepage) => `
       <meta property="og:title" content="${name}">
       <meta property="og:site_name" content="${name}">
       `
-      : ``
+      : ''
   }
   ${
     description
@@ -27,16 +27,16 @@ module.exports = (description, name, options = {}, homepage) => `
       <meta itemprop="description" content="${description}">
       <meta property="og:description" content="${description}">
       `
-      : ``
+      : ''
   }
-  ${homepage ? `<meta property="og:url" content="${homepage}">` : ``}
+  ${homepage ? `<meta property="og:url" content="${homepage}">` : ''}
   ${
-    options.shareCard && options.shareCard.includes(`http`)
+    options.shareCard && options.shareCard.includes('http')
       ? `
       <meta name="twitter:card" content="summary_large_image">
       <meta property="og:image" content="${options.shareCard}">
       `
-      : ``
+      : ''
   }
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="${
