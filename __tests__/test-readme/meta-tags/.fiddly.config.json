@@ -1,0 +1,6 @@
+{
+  "meta": [
+    { "name": "description", "content": "Helmet application" },
+    { "property": "robots", "content": "robots.txt" }
+  ]
+}

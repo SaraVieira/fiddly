@@ -1,3 +1,4 @@
+/* eslint-disable node/no-path-concat */
 const toCss = require('to-css')
 const CleanCSS = require('clean-css')
 const imageminJpegtran = require('imagemin-jpegtran')
@@ -66,6 +67,7 @@ const defaultOptions = {
   homepage: null,
   repo: null,
   pathPrefix: `${process.env.PATH_PREFIX || ''}`,
+  meta: [],
 }
 
 module.exports = {
@@ -231,7 +233,8 @@ module.exports = {
           description,
           name,
           options,
-          options.homepage || packageJSON.homepage
+          options.homepage || packageJSON.homepage,
+          options.meta
         ),
         body: `<div id="fiddly"><div class="body ${dark}"><div class="container">${githubCorner}${header(
           options,
