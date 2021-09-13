@@ -68,6 +68,8 @@ const defaultOptions = {
   repo: null,
   pathPrefix: `${process.env.PATH_PREFIX || ''}`,
   meta: [],
+  remoteStyles: [],
+  remoteScripts: [],
 }
 
 module.exports = {
@@ -234,7 +236,9 @@ module.exports = {
           name,
           options,
           options.homepage || packageJSON.homepage,
-          options.meta
+          options.meta,
+          options.remoteStyles,
+          options.remoteScripts
         ),
         body: `<div id="fiddly"><div class="body ${dark}"><div class="container">${githubCorner}${header(
           options,

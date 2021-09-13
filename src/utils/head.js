@@ -1,4 +1,12 @@
-module.exports = (description, name, options = {}, homepage, meta = []) => {
+module.exports = (
+  description,
+  name,
+  options = {},
+  homepage,
+  meta = [],
+  remoteStyles = [],
+  remoteScripts = []
+) => {
   const metaTags = meta
     .map((value) => {
       if (!value.content) return null
@@ -9,7 +17,8 @@ module.exports = (description, name, options = {}, homepage, meta = []) => {
       return `<meta ${key}="${v}" content="${content}" />`
     })
     .filter((exists) => exists)
-  console.log(metaTags)
+const remoteStylesCleaned = typeof remoteStyles === 'string' ? [remoteStyles] : remoteStyles
+const remoteScriptsCleaned = typeof remoteScripts === 'string' ? [remoteScripts] : remoteScripts
   return `
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -55,5 +64,17 @@ module.exports = (description, name, options = {}, homepage, meta = []) => {
     options.darkTheme ? 'dark' : 'white'
   }">
   ${metaTags.join('')}
+  ${
+    remoteStylesCleaned.length
+      ? remoteStylesCleaned
+          .map((link) => `<link rel="stylesheet" href="${link}">`)
+          .join('')
+      : ''
+  }
+  ${
+    remoteScriptsCleaned.length
+      ? remoteScriptsCleaned.map((link) => `<script src="${link}"></script>`).join('')
+      : ''
+  }
 `
 }
