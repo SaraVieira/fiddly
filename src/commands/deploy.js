@@ -35,7 +35,7 @@ module.exports = {
       if (err) {
         return spinner.fail('There was an error publishing your site 😢')
       }
-      return spinner.succeed(`Website Published 🎉`)
+      return spinner.succeed('Website Published 🎉')
     })
   },
 }

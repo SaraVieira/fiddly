@@ -11,7 +11,7 @@ module.exports = {
       print: { success },
       filesystem,
     } = toolbox
-    success(`Watching your files`)
+    success('Watching your files')
     const packageJSON =
       filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 

@@ -3,7 +3,7 @@ const CleanCSS = require('clean-css')
 const imagemin = require('imagemin')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
-const sass = require('node-sass')
+const sass = require('sass')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
 const fiddlyImports = require('../utils/fiddlyImports')
@@ -113,7 +113,7 @@ module.exports = {
 
     // Transform sass to css
     const css = sass
-      .renderSync({
+      .compile({
         data: remoteStyles
           .concat(filesystem.read(`${__dirname}/css/style.scss`))
           .concat(getAdditionalStyles()),
@@ -144,7 +144,7 @@ module.exports = {
         options.additionalFiles[options.additionalFiles.length - 1] === null
       ) {
         return error(
-          `No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.`
+          'No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.'
         )
       }
     } else {

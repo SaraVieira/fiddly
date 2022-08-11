@@ -57,8 +57,8 @@
     "markdown-it-inline-comments": "^1.0.1",
     "markdown-it-prism": "^2.0.5",
     "markdownlint": "^0.20.3",
-    "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
+    "sass": "^1.54.4",
     "snarkdown": "^1.2.2",
     "to-css": "^1.2.1"
   },
