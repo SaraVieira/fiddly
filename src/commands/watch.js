@@ -37,6 +37,8 @@ module.exports = {
           run(toolbox)
         }
       })
+
+      return null
     })
   },
 }

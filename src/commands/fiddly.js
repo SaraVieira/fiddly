@@ -1,6 +1,6 @@
+/* eslint-disable node/no-path-concat */
 const toCss = require('to-css')
 const CleanCSS = require('clean-css')
-const imagemin = require('imagemin')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
 const sass = require('sass')
@@ -67,6 +67,9 @@ const defaultOptions = {
   homepage: null,
   repo: null,
   pathPrefix: `${process.env.PATH_PREFIX || ''}`,
+  meta: [],
+  remoteStyles: [],
+  remoteScripts: [],
 }
 
 module.exports = {
@@ -177,6 +180,7 @@ module.exports = {
 
       // Map through them and if that file exists minify it and copy it
       images.map(async (i) => {
+        const imagemin = (await import('imagemin')).default
         if (filesystem.exists(`${process.cwd()}/${i}`)) {
           await imagemin([`${process.cwd()}/${i}`], {
             destination: `${distFolder}/${i.substring(0, i.lastIndexOf('/'))}/`,
@@ -223,7 +227,7 @@ module.exports = {
 
       const title = name ? name.charAt(0).toUpperCase() + name.slice(1) : ''
 
-      var html = createHTML({
+      const html = createHTML({
         title,
         css: fiddlyImports.css,
         lang: 'en',
@@ -231,7 +235,10 @@ module.exports = {
           description,
           name,
           options,
-          options.homepage || packageJSON.homepage
+          options.homepage || packageJSON.homepage,
+          options.meta,
+          options.remoteStyles,
+          options.remoteScripts
         ),
         body: `<div id="fiddly"><div class="body ${dark}"><div class="container">${githubCorner}${header(
           options,

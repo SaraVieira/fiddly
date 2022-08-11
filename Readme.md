@@ -4,11 +4,12 @@ Create beautiful and simple HTML pages from your Readme.md files
 
 - 🛠 No config
 - 👩‍💻 Code Highlighting
-- 💯Emoji Support
-- ✨Creates Static files (only JS is prism)
+- 💯 Emoji Support
+- ✨ Creates Static files (only JS is prism)
 - 🏳️‍🌈 Pretty Pages
 - 🦄 Customizable
 - 🖼 Image minification
+- 🧠 Custom Meta Tags
 - 🇳🇱 [CodeSandbox](https://codesandbox.io) and iframe Support
 
 ```bash
@@ -73,6 +74,9 @@ It can contain the following options:
 | additionalFiles | []                                 | Any other pages to create. It expects an array of paths of markdown files                                    |
 | repo            | null                               | Link to point the github corner                                                                              |
 | pathPrefix      | Environment var PATH_PREFIX or '/' | Host your fiddly files at e.g. /my-fiddly-project                                                            |
+| meta            | []                                 | Any extra meta tags you would like                                                                           |
+| remoteStyles    | []                                 | Array of any remote styles you want to include (eg: Google Fonts)                                            |
+| remoteScripts   | []                                 | Array of any remote scripts you want to include (eg: Google Analytics)                                       |
 | deployment      | {}                                 | Deployment options for github pages. Accepts all options [here](https://github.com/tschaub/gh-pages#options) |
 
 <!-- markdownlint-enable -->
@@ -109,6 +113,26 @@ body {
   }
 }
 ```
+
+## Meta Tags
+
+To create any meta tags it uses an array system like so:
+
+```json
+  "meta": [
+    { "name": "description", "content": "A cool page" },
+    { "property": "robots", "content": "robots.txt" }
+  ]
+```
+
+This will create the following HTML:
+
+```html
+<meta name="description" content="A cool page" />
+<meta property="robots" content="robots.txt" />
+```
+
+The first key on the object can have any name and will be applied as presented, the second one must have the name of content and will work as presented above.
 
 ## Images
 

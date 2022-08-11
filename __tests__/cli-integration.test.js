@@ -156,3 +156,28 @@ test('Prefixes logo and additional file paths', async () => {
   filesystem.remove('public')
   process.chdir(prevDir)
 })
+
+test('Adds meta tags', async () => {
+  const prevDir = process.cwd()
+
+  process.chdir('./__tests__/test-readme/meta-tags')
+
+  const output = await cli()
+
+  expect(output).toContain(success)
+  expect(filesystem.exists('public/index.html')).toBeTruthy()
+  const html = filesystem.read('public/index.html')
+
+  expect(html).toContain(
+    // prettier-ignore
+    // eslint-disable-next-line no-useless-escape
+    '<meta name=\"description\" content=\"Helmet application\" />'
+  )
+
+  // prettier-ignore
+  // eslint-disable-next-line no-useless-escape
+  expect(html).toContain('<meta property=\"robots\" content=\"robots.txt\" />')
+
+  filesystem.remove('public')
+  process.chdir(prevDir)
+})
