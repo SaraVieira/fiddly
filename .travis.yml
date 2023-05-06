@@ -1,8 +1,0 @@
-language: node_js
-cache:
-  directories:
-    - node_modules
-  yarn: true
-node_js:
-  - 8
-  - 9

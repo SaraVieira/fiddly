@@ -3,7 +3,7 @@ const toCss = require('to-css')
 const CleanCSS = require('clean-css')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
-const sass = require('node-sass')
+const sass = require('sass')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
 const fiddlyImports = require('../utils/fiddlyImports')
@@ -116,7 +116,7 @@ module.exports = {
 
     // Transform sass to css
     const css = sass
-      .renderSync({
+      .compile({
         data: remoteStyles
           .concat(filesystem.read(`${__dirname}/css/style.scss`))
           .concat(getAdditionalStyles()),

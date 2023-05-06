@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "alias": "fiddly",
+  "public": true,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static",
+      "config": { "distDir": "public" }
+    }
+  ]
+}
